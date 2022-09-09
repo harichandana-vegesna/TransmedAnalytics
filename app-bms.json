@@ -1,0 +1,34 @@
+{
+    "apps": [
+      {
+        "name": "ana-bms",
+        "script": "./dist/app-bms.js",
+        "exec_mode": "cluster",
+        "instances": 1,
+        "env_bms": {
+          "DB_HOST": "10.21.3.7",
+          "DB_USER": "ship_analytics_bms",
+          "DB_PASS": "rvuser123$",
+          "DB_NAME": "ship_analytics_bms",
+          "BASE_URL":"/bms/analytics",
+          "KEY":"585064b851255a61aed6ec2e54ad057a27a5060ec5c767e9d4230693463fde69",
+          "KAFKA_CLIENT_ID": "Kafka-app",
+          "PORT": 4008,
+          "SHIPPER_ORG_GROUP":"BMS",
+          "SHIPPER_STATUS":"Delivered",
+          "KAFKA_BROKERS": "",
+          "NODE_ENV": "DGF",
+          "NODE_ID": "DGF",
+          "POST_URL": "https://uat-transmedbknd.blesstrace.com/shipment/auth/users",
+          "APP_KEY":"6150492a7dce1b08db22ad24b2767b83",
+          "EMAIL_ID":"uatbms@blesstrace.com",
+          "GET_URL":"https://uat-transmedbknd.blesstrace.com/shipment/im/im-publish-to-kafka",
+          "PUBLISH_MSG_TYPE":"im_shipment_analytics",
+          "IMCRON":"OFF",
+          "AGGCRON":"OFF",
+          "APICRONTIME":"0 * * * *",
+          "KAFKACRONTIME":"*/10  * * * *"
+        }
+      }
+    ]
+  }

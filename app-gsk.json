@@ -1,0 +1,34 @@
+{
+    "apps": [
+      {
+        "name": "ana-gsk",
+        "script": "./dist/app-gsk.js",
+        "exec_mode": "cluster",
+        "instances": 1,
+        "env_gsk": {
+          "DB_HOST": "10.21.3.7",
+          "DB_USER": "ship_analytics_gsk",
+          "DB_PASS": "bless123$",
+          "DB_NAME": "ship_analytics_gsk",
+          "BASE_URL":"/gsk/analytics",
+          "KEY":"585064b851255a61aed6ec2e54ad057a27a5060ec5c767e9d4230693463fde69",
+          "KAFKA_CLIENT_ID": "Kafka-app",
+          "PORT": 4005,
+          "SHIPPER_ORG_GROUP":"GSK",
+          "SHIPPER_STATUS":"Delivered",
+          "KAFKA_BROKERS": "",
+          "NODE_ENV": "DGF",
+          "NODE_ID": "DGF",
+          "POST_URL": "https://uat-transmedbknd.blesstrace.com/gsk/shipment/auth/users",
+          "APP_KEY":"6150492a7dce1b08db22ad24b2767b83",
+          "EMAIL_ID":"uatgsk@blesstrace.com",
+          "GET_URL":"https://uat-transmedbknd.blesstrace.com/gsk/shipment/im/im-publish-to-kafka",
+          "PUBLISH_MSG_TYPE":"im_shipment_analytics, im_shipment_analytics_cost",
+          "IMCRON":"OFF",
+          "AGGCRON":"OFF",
+          "APICRONTIME":"0 * * * *",
+          "KAFKACRONTIME":"*/10  * * * *"
+        }
+      }
+    ]
+  }

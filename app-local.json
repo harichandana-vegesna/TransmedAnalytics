@@ -1,0 +1,35 @@
+{
+    "apps": [
+      {
+        "name": "ana-local",
+        "script": "./dist/main.js",
+        "exec_mode": "cluster",
+        "instances": 1,
+        "env": {
+          "DB_HOST": "localhost",
+          "DB_USER": "root",
+          "DB_PASS": "root",
+          "DB_NAME": "analytics_freeze",
+          "BASE_URL":"/analytics",
+          "KEY":"",
+          "KAFKA_CLIENT_ID": "Kafka-app",
+          "PORT": 4005,
+          "SHIPPER_ORG_GROUP":"ASTRAZENECA",
+          "SHIPPER_STATUS":"Delivered",
+          "KAFKA_BROKERS": "",
+          "NODE_ENV": "DGF",
+          "NODE_ID": "DGF",
+          "POST_URL": "https://uat-transmedbknd.blesstrace.com/astrazeneca/shipment/auth/users",
+          "APP_KEY":"6150492a7dce1b08db22ad24b2767b83",
+          "EMAIL_ID":"uatastrazeneca@blesstrace.com",
+          "GET_URL":"https://uat-transmedbknd.blesstrace.com/astrazeneca/shipment/im/im-publish-to-kafka",
+          "PUBLISH_MSG_TYPE":"im_shipment_analytics, im_shipment_analytics_cost",
+          "IMCRON":"OFF",
+          "AGGCRON":"OFF",
+          "APICRONTIME":"0 * * * *",
+          "KAFKACRONTIME":"*/10  * * * *"
+        }
+      }
+    ]
+  }
+  
