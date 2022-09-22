@@ -4,6 +4,7 @@ import { Logger } from "../../logger/Logger";
 import { DI } from "../../di/DIContainer";
 import { BvAggCostanalysis, AggGskvxscorecard } from "../entity/init-models";
 import { BvEtaDeviationDrilldown } from "../entity/init-models";
+import { VShipmentEtacount } from "../entity/init-models";
 
 import { ImShipmentAnalyticsCost } from "../entity/init-models";
 import { BvYtdshipmentsDrilldown } from "../entity/init-models";
@@ -205,6 +206,35 @@ export class ImShipmentAnalyticsCostRepository extends Repository {
         })
 
     }
+
+    // async getParentEtaDeviationDetails(whereObj: any, attributes: any): Promise<VShipmentEtacount[]> {
+    //     whereObj = (whereObj == undefined && whereObj == null) ? {} : whereObj
+    //     return await new Promise((resolve, reject) => {
+    //         VShipmentEtacount.findAll({
+    //             where: whereObj, attributes: attributes
+    //         }).then((get: VShipmentEtacount[]) => {
+    //             resolve(get);
+    //         }).catch((error: any) => {
+    //             this.logger.error(error);
+    //             reject(error);
+    //         });
+    //     })
+
+    // }
+
+    async getParentEtaDeviationDetails(parentId: any): Promise<any> {
+        return await new Promise((resolve, reject) => {
+            VShipmentEtacount.sequelize?.query('CALL shipment_etacount(:P_parentId)',{replacements:{P_parentId:parentId}})
+            .then((get:any)=>{
+               resolve({ status: { code: 'SUCCESS', message: get } })
+            }).catch((error: any) => {
+                this.logger.error(error);
+                reject(error);
+            });
+            
+        })
+    }
+
 
     async create(obj: any, transaction?: Transaction): Promise<ImShipmentAnalyticsCost> {
         return await new Promise((resolve, reject) => {

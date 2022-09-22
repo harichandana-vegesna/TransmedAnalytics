@@ -20,12 +20,16 @@ export class YTDShipmentsAndWeightService {
         this.imShipmentAnalyticsCostRepository = DI.get(ImShipmentAnalyticsCostRepository)
     }
 
-    async getYTDShipmentsAndWeight(originCountry?: any, startDate?: any, endDate?: any,shipperOrgId?:any): Promise<any> {
+    async getYTDShipmentsAndWeight(originCountry?: any, startDate?: any, endDate?: any,shipperOrgId?:any,shipperAccountNumber?:any): Promise<any> {
         let whereObj: any = {};
         return new Promise(async (resolve, reject) => {
             try {
                 if (originCountry !== '') {
                     whereObj['origin_country'] = originCountry
+                }
+                if (shipperAccountNumber !== '') {
+                    shipperAccountNumber = shipperAccountNumber.split(",")
+                    whereObj['shipperAccountNumber'] = { [Op.in]: [shipperAccountNumber] }
                 }
                 if (startDate !== '' && endDate !== '') {
                     startDate = new Date(startDate)
@@ -47,7 +51,7 @@ export class YTDShipmentsAndWeightService {
     }
 
 
-    async getShipmentsByMonthAndYr(startDate?: any, endDate?: any,originCountry?:any,shipperOrgId?:any): Promise<any> {
+    async getShipmentsByMonthAndYr(startDate?: any, endDate?: any,originCountry?:any,shipperOrgId?:any,shipperAccountNumber?:any): Promise<any> {
         let whereObj: any = {};
         return new Promise(async (resolve, reject) => {
             try {
@@ -55,6 +59,10 @@ export class YTDShipmentsAndWeightService {
                     startDate = new Date(startDate)
                     endDate = new Date(endDate)
                     whereObj['shipment_creation_date_time'] = { [Op.between]: [startDate, endDate] }
+                }
+                if (shipperAccountNumber !== '') {
+                    shipperAccountNumber = shipperAccountNumber.split(",")
+                    whereObj['shipperAccountNumber'] = { [Op.in]: [shipperAccountNumber] }
                 }
                 if (originCountry !== '') {
                     whereObj['origin_country'] = originCountry
@@ -149,12 +157,16 @@ export class YTDShipmentsAndWeightService {
         })
     }
 
-    async getShipmentsByOrigin(originCode:any,destinationcode:any,shipperOrgId:any,startDate:any,endDate:any,lspOrgId:any): Promise<any> {
+    async getShipmentsByOrigin(originCode:any,destinationcode:any,shipperOrgId:any,startDate:any,endDate:any,lspOrgId:any,shipperAccountNumber:any): Promise<any> {
         let whereObj: any = {};
         return new Promise(async (resolve, reject) => {
             try {
                 let attributes:any;
-                attributes=['Consignee_name','shipper_name','shipment_id','hawb','modeof_transport','inco_terms','carrier','shipment_confirmed_date','shipment_pickupdate','shipment_status','chargeable_weight','total_pieces','shipper','parent_id']
+                if (shipperAccountNumber !== '') {
+                    shipperAccountNumber = shipperAccountNumber.split(",")
+                    whereObj['shipper'] = { [Op.in]: [shipperAccountNumber] }
+                }
+                attributes=['Consignee_name','shipper_name','shipment_id','hawb','modeof_transport','inco_terms','carrier','shipment_confirmed_date','shipment_pickupdate','shipment_status','chargeable_weight','total_pieces','shipper','parent_id','shipper_reference']
                 whereObj['origin_code'] = originCode
                 whereObj['destination_code'] = destinationcode
                 whereObj['lsporgid'] = lspOrgId

@@ -1,6 +1,8 @@
 import { Logger } from "../logger/Logger";
 import { DI } from '../di/DIContainer';
 import { QueryBuilder } from "../util/QueryBuilder";
+const { Op } = require('sequelize');
+
 import { OtifRootCausesRepository } from "../data/repository/OtifRootCausesRepository";
 
 export class OtifRootCausesService {
@@ -14,11 +16,15 @@ export class OtifRootCausesService {
         this.queryBuilder = DI.get(QueryBuilder);
     }
 
-    async getOtifRootCauses(originCountry?:any, month?: any, year?:any,shipperOrgId?:any): Promise<any> {
+    async getOtifRootCauses(originCountry?:any, month?: any, year?:any,shipperOrgId?:any,shipperAccountNumber?:any): Promise<any> {
         let whereObj: any = {};
         return new Promise(async (resolve, reject) => {
             try {
                 let obj: any = {};
+                if (shipperAccountNumber !== '') {
+                    shipperAccountNumber = shipperAccountNumber.split(",")
+                    whereObj['shipperAccountNumber'] = { [Op.in]: [shipperAccountNumber] }
+                }
                 if(originCountry !== ''){
                     whereObj['origin_country'] = originCountry                   
                 }

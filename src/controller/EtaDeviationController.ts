@@ -7,6 +7,7 @@ import { FetchResponse } from "../response/APIResponses";
 import { ResponseCode, ResponseStatus } from "../response/BaseResponse";
 import { EtaDeviationService } from "../service/EtaDeviationService";
 import { VerifyJwtTokenService } from "../service/VerifyJwtTokenService";
+import { getAttributes } from "sequelize-typescript";
 
 
 
@@ -25,6 +26,14 @@ export class EtaDeviationController implements Controller {
                 let dataResult: any;
                 let startDate = req.param('startDate');
                 let endDate = req.param('endDate')
+                let shipperAccountNumber = req.param('accounts')
+                if (shipperAccountNumber === undefined || shipperAccountNumber === '' || shipperAccountNumber.length === 0) {
+                    shipperAccountNumber = ''
+                }
+                else {
+                    shipperAccountNumber = req.param('accounts');
+                }
+
                 if(startDate === undefined || startDate === ''){
                     startDate = ''
                 }
@@ -38,7 +47,7 @@ export class EtaDeviationController implements Controller {
                     endDate = req.param('endDate');
                 }
                 let shipperOrgId = req.param('shipperOrgId')
-                dataResult = await this.etaDeviationService.getEtaDeviationIntransitShipments(startDate,endDate,shipperOrgId)
+                dataResult = await this.etaDeviationService.getEtaDeviationIntransitShipments(startDate,endDate,shipperOrgId,shipperAccountNumber)
                 response = new FetchResponse(new ResponseStatus(ResponseCode.SUCCESS, "Retrieved Successfully"), dataResult)
 
                 res.json(response);
@@ -56,6 +65,13 @@ export class EtaDeviationController implements Controller {
                 let dataResult: any;
                 let startDate = req.param('startDate');
                 let endDate = req.param('endDate')
+                let shipperAccountNumber = req.param('accounts')
+                if (shipperAccountNumber === undefined || shipperAccountNumber === '' || shipperAccountNumber.length === 0) {
+                    shipperAccountNumber = ''
+                }
+                else {
+                    shipperAccountNumber = req.param('accounts');
+                }
                 if(startDate === undefined || startDate === ''){
                     startDate = ''
                 }
@@ -69,7 +85,7 @@ export class EtaDeviationController implements Controller {
                     endDate = req.param('endDate');
                 }
                 let shipperOrgId = req.param('shipperOrgId')
-                dataResult = await this.etaDeviationService.getEtaDeviationDeliveredShipments(startDate,endDate,shipperOrgId)
+                dataResult = await this.etaDeviationService.getEtaDeviationDeliveredShipments(startDate,endDate,shipperOrgId,shipperAccountNumber)
                 response = new FetchResponse(new ResponseStatus(ResponseCode.SUCCESS, "Retrieved Successfully"), dataResult)
 
                 res.json(response);
@@ -95,6 +111,13 @@ export class EtaDeviationController implements Controller {
                 let deviation1day = req.param('deviation1day')
                 let deviation2days = req.param('deviation>2days')
                 let ontime = req.param('Ontime')
+                let shipperAccountNumber = req.param('accounts')
+                if (shipperAccountNumber === undefined || shipperAccountNumber === '' || shipperAccountNumber.length === 0) {
+                    shipperAccountNumber = ''
+                }
+                else {
+                    shipperAccountNumber = req.param('accounts');
+                }
                 if(shipmentStatus === undefined || shipmentStatus === ''){
                     shipmentStatus = ''
                 }
@@ -157,7 +180,7 @@ export class EtaDeviationController implements Controller {
                     endDate = req.param('endDate');
                 }
                 let shipperOrgId = req.param('shipperOrgId')
-                dataResult = await this.etaDeviationService.getEtaDeviationShipmentsDrillDown(startDate,endDate,shipperOrgId,shipmentStatus,originRegion,deviation6Hr,deviation12Hr,deviation18Hr,deviation1day,deviation2days,ontime)
+                dataResult = await this.etaDeviationService.getEtaDeviationShipmentsDrillDown(startDate,endDate,shipperOrgId,shipmentStatus,originRegion,deviation6Hr,deviation12Hr,deviation18Hr,deviation1day,deviation2days,ontime,shipperAccountNumber)
                 response = new FetchResponse(new ResponseStatus(ResponseCode.SUCCESS, "Retrieved Successfully"), dataResult)
 
                 res.json(response);
@@ -245,13 +268,39 @@ export class EtaDeviationController implements Controller {
 
             }
         });
+
+        router.get('/deviationDetails', async (req: Request, res: Response, next: NextFunction) => {
+            try {
+
+                let response: any;
+                let dataResult: any;
+                let parentId = req.param('parentId');
+                if(parentId === undefined || parentId === ''){
+                    parentId = ''
+                }
+                else{
+                    parentId = req.param('parentId');
+                }
+                
+                dataResult = await this.etaDeviationService.getParentDeviationDetails(parentId)
+                this.logger.log("dataresult",dataResult)
+                response = new FetchResponse(new ResponseStatus(ResponseCode.SUCCESS, "Retrieved Successfully"), dataResult)
+
+                res.json(response);
+            } catch (error) {
+                this.logger.log("error", error)
+                next(error);
+
+            }
+        });
         router.get('/originCodes',this.verifyJwtTokenService.verifyToken, async (req: Request, res: Response, next: NextFunction) => {
             try {
 
                 let response: any;
                 let dataResult: any;
                 let shipperOrgId = req.param('shipperOrgId')
-                dataResult = await this.etaDeviationService.getOriginCodes(shipperOrgId)
+                let shipperAccountNumber:any;
+                dataResult = await this.etaDeviationService.getOriginCodes(shipperOrgId,shipperAccountNumber)
                 response = new FetchResponse(new ResponseStatus(ResponseCode.SUCCESS, "Retrieved Successfully"), dataResult)
 
                 res.json(response);

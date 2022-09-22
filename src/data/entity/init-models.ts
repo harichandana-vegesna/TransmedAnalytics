@@ -33,6 +33,8 @@ import { RegionMasterBk1 } from "./RegionMasterBk1";
 import type { RegionMasterBk1Attributes, RegionMasterBk1CreationAttributes } from "./RegionMasterBk1";
 import { RegionMasterProdslgBk210222 } from "./RegionMasterProdslgBk210222";
 import type { RegionMasterProdslgBk210222Attributes, RegionMasterProdslgBk210222CreationAttributes } from "./RegionMasterProdslgBk210222";
+import { VShipmentEtacount } from "./VShipmentEtacount";
+import type { VShipmentEtacountAttributes, VShipmentEtacountCreationAttributes } from "./VShipmentEtacount";
 import { AggAirlinePerformance } from "./AggAirlinePerformance";
 import type { AggAirlinePerformanceAttributes, AggAirlinePerformanceCreationAttributes } from "./AggAirlinePerformance";
 import { AggCostanalysisShipments } from "./AggCostanalysisShipments";
@@ -59,6 +61,12 @@ import { AggYtdspendWeight } from "./AggYtdspendWeight";
 import type { AggYtdspendWeightAttributes, AggYtdspendWeightCreationAttributes } from "./AggYtdspendWeight";
 import { BatchtimeUpdate } from "./BatchtimeUpdate";
 import type { BatchtimeUpdateAttributes, BatchtimeUpdateCreationAttributes } from "./BatchtimeUpdate";
+import { CustomImport } from "./CustomImport";
+import type { CustomImportAttributes, CustomImportCreationAttributes } from "./CustomImport";
+import { Delivered } from "./Delivered";
+import type { DeliveredAttributes, DeliveredCreationAttributes } from "./Delivered";
+import { Depart } from "./Depart";
+import type { DepartAttributes, DepartCreationAttributes } from "./Depart";
 import { DimConsignee } from "./DimConsignee";
 import type { DimConsigneeAttributes, DimConsigneeCreationAttributes } from "./DimConsignee";
 import { DimAirline } from "./DimAirline";
@@ -75,6 +83,10 @@ import { DimShipper } from "./DimShipper";
 import type { DimShipperAttributes, DimShipperCreationAttributes } from "./DimShipper";
 import { DimTime } from "./DimTime";
 import type { DimTimeAttributes, DimTimeCreationAttributes } from "./DimTime";
+import { Dispatch } from "./Dispatch";
+import type { DispatchAttributes, DispatchCreationAttributes } from "./Dispatch";
+import { Etadelivered } from "./Etadelivered";
+import type { EtadeliveredAttributes, EtadeliveredCreationAttributes } from "./Etadelivered";
 import { FactOperationalData } from "./FactOperationalData";
 import type { FactOperationalDataAttributes, FactOperationalDataCreationAttributes } from "./FactOperationalData";
 import { ImMessages } from "./ImMessages";
@@ -83,12 +95,24 @@ import { ImShipmentAnalytics } from "./ImShipmentAnalytics";
 import type { ImShipmentAnalyticsAttributes, ImShipmentAnalyticsCreationAttributes } from "./ImShipmentAnalytics";
 import { ImShipmentAnalyticsCost } from "./ImShipmentAnalyticsCost";
 import type { ImShipmentAnalyticsCostAttributes, ImShipmentAnalyticsCostCreationAttributes } from "./ImShipmentAnalyticsCost";
+import { LatestId } from "./LatestId";
+import type { LatestIdAttributes, LatestIdCreationAttributes } from "./LatestId";
 import { LatestImshipmentId } from "./LatestImshipmentId";
 import type { LatestImshipmentIdAttributes, LatestImshipmentIdCreationAttributes } from "./LatestImshipmentId";
+import { LatestImshipmentIntransitId } from "./LatestImshipmentIntransitId";
+import type { LatestImshipmentIntransitIdAttributes, LatestImshipmentIntransitIdCreationAttributes } from "./LatestImshipmentIntransitId";
 import { OtifrootcausesMaster } from "./OtifrootcausesMaster";
 import type { OtifrootcausesMasterAttributes, OtifrootcausesMasterCreationAttributes } from "./OtifrootcausesMaster";
+import { OutFordelivery } from "./OutFordelivery";
+import type { OutFordeliveryAttributes, OutFordeliveryCreationAttributes } from "./OutFordelivery";
+import { Pickup } from "./Pickup";
+import type { PickupAttributes, PickupCreationAttributes } from "./Pickup";
 import { RegionDetails } from "./RegionDetails";
 import type { RegionDetailsAttributes, RegionDetailsCreationAttributes } from "./RegionDetails";
+import { RegionDetailsCost } from "./RegionDetailsCost";
+import type { RegionDetailsCostAttributes, RegionDetailsCostCreationAttributes } from "./RegionDetailsCost";
+import { RegionDetailsIntransit } from "./RegionDetailsIntransit";
+import type { RegionDetailsIntransitAttributes, RegionDetailsIntransitCreationAttributes } from "./RegionDetailsIntransit";
 import { ShipmentDeviated } from "./ShipmentDeviated";
 import type { ShipmentDeviatedAttributes, ShipmentDeviatedCreationAttributes } from "./ShipmentDeviated";
 import { SourceOperationalData } from "./SourceOperationalData";
@@ -114,6 +138,7 @@ export {
   RegionMaster,
   RegionMasterBk1,
   RegionMasterProdslgBk210222,
+  VShipmentEtacount,
   AggAirlinePerformance,
   AggCostanalysisShipments,
   AggCostgrpshipments,
@@ -127,6 +152,9 @@ export {
   AggYtdshipmentsWeight,
   AggYtdspendWeight,
   BatchtimeUpdate,
+  CustomImport,
+  Delivered,
+  Depart,
   DimConsignee,
   DimAirline,
   DimDelivery,
@@ -135,13 +163,21 @@ export {
   DimPortofOrigin,
   DimShipper,
   DimTime,
+  Dispatch,
+  Etadelivered,
   FactOperationalData,
   ImMessages,
   ImShipmentAnalytics,
   ImShipmentAnalyticsCost,
+  LatestId,
   LatestImshipmentId,
+  LatestImshipmentIntransitId,
   OtifrootcausesMaster,
+  OutFordelivery,
+  Pickup,
   RegionDetails,
+  RegionDetailsCost,
+  RegionDetailsIntransit,
   ShipmentDeviated,
   SourceOperationalData,
   VFlightDetails,
@@ -182,6 +218,8 @@ export type {
   RegionMasterBk1CreationAttributes,
   RegionMasterProdslgBk210222Attributes,
   RegionMasterProdslgBk210222CreationAttributes,
+  VShipmentEtacountAttributes,
+  VShipmentEtacountCreationAttributes,
   AggAirlinePerformanceAttributes,
   AggAirlinePerformanceCreationAttributes,
   AggCostanalysisShipmentsAttributes,
@@ -208,6 +246,12 @@ export type {
   AggYtdspendWeightCreationAttributes,
   BatchtimeUpdateAttributes,
   BatchtimeUpdateCreationAttributes,
+  CustomImportAttributes,
+  CustomImportCreationAttributes,
+  DeliveredAttributes,
+  DeliveredCreationAttributes,
+  DepartAttributes,
+  DepartCreationAttributes,
   DimConsigneeAttributes,
   DimConsigneeCreationAttributes,
   DimAirlineAttributes,
@@ -224,6 +268,10 @@ export type {
   DimShipperCreationAttributes,
   DimTimeAttributes,
   DimTimeCreationAttributes,
+  DispatchAttributes,
+  DispatchCreationAttributes,
+  EtadeliveredAttributes,
+  EtadeliveredCreationAttributes,
   FactOperationalDataAttributes,
   FactOperationalDataCreationAttributes,
   ImMessagesAttributes,
@@ -232,12 +280,24 @@ export type {
   ImShipmentAnalyticsCreationAttributes,
   ImShipmentAnalyticsCostAttributes,
   ImShipmentAnalyticsCostCreationAttributes,
+  LatestIdAttributes,
+  LatestIdCreationAttributes,
   LatestImshipmentIdAttributes,
   LatestImshipmentIdCreationAttributes,
+  LatestImshipmentIntransitIdAttributes,
+  LatestImshipmentIntransitIdCreationAttributes,
   OtifrootcausesMasterAttributes,
   OtifrootcausesMasterCreationAttributes,
+  OutFordeliveryAttributes,
+  OutFordeliveryCreationAttributes,
+  PickupAttributes,
+  PickupCreationAttributes,
   RegionDetailsAttributes,
   RegionDetailsCreationAttributes,
+  RegionDetailsCostAttributes,
+  RegionDetailsCostCreationAttributes,
+  RegionDetailsIntransitAttributes,
+  RegionDetailsIntransitCreationAttributes,
   ShipmentDeviatedAttributes,
   ShipmentDeviatedCreationAttributes,
   SourceOperationalDataAttributes,
@@ -264,6 +324,7 @@ export function initModels(sequelize: Sequelize) {
   RegionMaster.initModel(sequelize);
   RegionMasterBk1.initModel(sequelize);
   RegionMasterProdslgBk210222.initModel(sequelize);
+  VShipmentEtacount.initModel(sequelize);
   AggAirlinePerformance.initModel(sequelize);
   AggCostanalysisShipments.initModel(sequelize);
   AggCostgrpshipments.initModel(sequelize);
@@ -277,6 +338,9 @@ export function initModels(sequelize: Sequelize) {
   AggYtdshipmentsWeight.initModel(sequelize);
   AggYtdspendWeight.initModel(sequelize);
   BatchtimeUpdate.initModel(sequelize);
+  CustomImport.initModel(sequelize);
+  Delivered.initModel(sequelize);
+  Depart.initModel(sequelize);
   DimConsignee.initModel(sequelize);
   DimAirline.initModel(sequelize);
   DimDelivery.initModel(sequelize);
@@ -285,13 +349,21 @@ export function initModels(sequelize: Sequelize) {
   DimPortofOrigin.initModel(sequelize);
   DimShipper.initModel(sequelize);
   DimTime.initModel(sequelize);
+  Dispatch.initModel(sequelize);
+  Etadelivered.initModel(sequelize);
   FactOperationalData.initModel(sequelize);
   ImMessages.initModel(sequelize);
   ImShipmentAnalytics.initModel(sequelize);
   ImShipmentAnalyticsCost.initModel(sequelize);
+  LatestId.initModel(sequelize);
   LatestImshipmentId.initModel(sequelize);
+  LatestImshipmentIntransitId.initModel(sequelize);
   OtifrootcausesMaster.initModel(sequelize);
+  OutFordelivery.initModel(sequelize);
+  Pickup.initModel(sequelize);
   RegionDetails.initModel(sequelize);
+  RegionDetailsCost.initModel(sequelize);
+  RegionDetailsIntransit.initModel(sequelize);
   ShipmentDeviated.initModel(sequelize);
   SourceOperationalData.initModel(sequelize);
   VFlightDetails.initModel(sequelize);
@@ -331,6 +403,7 @@ export function initModels(sequelize: Sequelize) {
     RegionMaster: RegionMaster,
     RegionMasterBk1: RegionMasterBk1,
     RegionMasterProdslgBk210222: RegionMasterProdslgBk210222,
+    VShipmentEtacount: VShipmentEtacount,
     AggAirlinePerformance: AggAirlinePerformance,
     AggCostanalysisShipments: AggCostanalysisShipments,
     AggCostgrpshipments: AggCostgrpshipments,
@@ -344,6 +417,9 @@ export function initModels(sequelize: Sequelize) {
     AggYtdshipmentsWeight: AggYtdshipmentsWeight,
     AggYtdspendWeight: AggYtdspendWeight,
     BatchtimeUpdate: BatchtimeUpdate,
+    CustomImport: CustomImport,
+    Delivered: Delivered,
+    Depart: Depart,
     DimConsignee: DimConsignee,
     DimAirline: DimAirline,
     DimDelivery: DimDelivery,
@@ -352,13 +428,21 @@ export function initModels(sequelize: Sequelize) {
     DimPortofOrigin: DimPortofOrigin,
     DimShipper: DimShipper,
     DimTime: DimTime,
+    Dispatch: Dispatch,
+    Etadelivered: Etadelivered,
     FactOperationalData: FactOperationalData,
     ImMessages: ImMessages,
     ImShipmentAnalytics: ImShipmentAnalytics,
     ImShipmentAnalyticsCost: ImShipmentAnalyticsCost,
+    LatestId: LatestId,
     LatestImshipmentId: LatestImshipmentId,
+    LatestImshipmentIntransitId: LatestImshipmentIntransitId,
     OtifrootcausesMaster: OtifrootcausesMaster,
+    OutFordelivery: OutFordelivery,
+    Pickup: Pickup,
     RegionDetails: RegionDetails,
+    RegionDetailsCost: RegionDetailsCost,
+    RegionDetailsIntransit: RegionDetailsIntransit,
     ShipmentDeviated: ShipmentDeviated,
     SourceOperationalData: SourceOperationalData,
     VFlightDetails: VFlightDetails,

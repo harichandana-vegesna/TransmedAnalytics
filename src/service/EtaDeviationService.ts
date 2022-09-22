@@ -27,7 +27,7 @@ export class EtaDeviationService {
         this.queryBuilder = DI.get(QueryBuilder);
     }
 
-    async getEtaDeviationIntransitShipments(startDate: any, endDate: any, shipperOrgId: any): Promise<any> {
+    async getEtaDeviationIntransitShipments(startDate: any, endDate: any, shipperOrgId: any,shipperAccountNumber:any): Promise<any> {
         let whereObj: any = {};
         return new Promise(async (resolve, reject) => {
             try {
@@ -39,6 +39,10 @@ export class EtaDeviationService {
                 //intransit records
                 whereObj['shipper_org_group'] = shipperOrgId
                 whereObj['shipment_status'] = 'INTRANSIT'
+                if (shipperAccountNumber !== '') {
+                    shipperAccountNumber = shipperAccountNumber.split(",")
+                    whereObj['shipper'] = { [Op.in]: [shipperAccountNumber] }
+                }
                 if (startDate !== '' && endDate !== '') {
                     startDate = new Date(startDate)
                     endDate = new Date(endDate)
@@ -102,7 +106,7 @@ export class EtaDeviationService {
         })
     }
 
-    async getEtaDeviationDeliveredShipments(startDate: any, endDate: any, shipperOrgId: any): Promise<any> {
+    async getEtaDeviationDeliveredShipments(startDate: any, endDate: any, shipperOrgId: any,shipperAccountNumber:any): Promise<any> {
         let whereObj: any = {};
         return new Promise(async (resolve, reject) => {
             try {
@@ -110,6 +114,10 @@ export class EtaDeviationService {
                 let etaDetails: any;
                 whereObj['shipper_org_group'] = shipperOrgId
                 whereObj['shipment_status'] = 'DELIVERED'
+                if (shipperAccountNumber !== '') {
+                    shipperAccountNumber = shipperAccountNumber.split(",")
+                    whereObj['shipper'] = { [Op.in]: [shipperAccountNumber] }
+                }
                 if (startDate !== '' && endDate !== '') {
                     startDate = new Date(startDate)
                     endDate = new Date(endDate)
@@ -123,12 +131,16 @@ export class EtaDeviationService {
         })
     }
 
-    async getEtaDeviationShipmentsDrillDown(startDate: any, endDate: any, shipperOrgId: any, shipmentStatus: any, originRegion: any, deviation6Hr: any, deviation12Hr: any, deviation18Hr: any, deviation1day: any, deviation2days: any, ontime: any): Promise<any> {
+    async getEtaDeviationShipmentsDrillDown(startDate: any, endDate: any, shipperOrgId: any, shipmentStatus: any, originRegion: any, deviation6Hr: any, deviation12Hr: any, deviation18Hr: any, deviation1day: any, deviation2days: any, ontime: any,shipperAccountNumber:any): Promise<any> {
         let whereObj: any = {};
         return new Promise(async (resolve, reject) => {
             try {
                 let attributes: any;
                 let etaDetails: any;
+                if (shipperAccountNumber !== '') {
+                    shipperAccountNumber = shipperAccountNumber.split(",")
+                    whereObj['shipper'] = { [Op.in]: [shipperAccountNumber] }
+                }
                 attributes = ['year_number', 'month', 'shipment_status', 'shipper', 'consignee', 'hawb', 'leg1_ata_date', 'leg2_ata_date', 'leg3_ata_date', 'leg4_ata_date', 'leg5_ata_date', 'parent_id', 'pickup', 'depart', 'dispath', 'custom_import', 'outfordelivery', 'delivered', 'carrier', 'origin_code', 'destination_code', 'shipper_reference', 'smode_of_transport', ['origin', 'origin_name'], ['shipment_destination', 'destination_name'], ['shipment_origin_country', 'origin_country_name'], ['shipment_destination_country', 'destination_country_name']]
                 whereObj['shipper_org_group'] = shipperOrgId
                 if (shipmentStatus !== '') {
@@ -210,7 +222,7 @@ export class EtaDeviationService {
             }
         })
     }
-    async getEtaDeviationSummary(origin: any, accounts: any, startDate: any, endDate: any, shipperOrgId: any): Promise<any> {
+    async getEtaDeviationSummary(origin: any, accounts: any, startDate: any, endDate: any, shipperOrgId: any,shipperAccountNumber?:any): Promise<any> {
         let whereObj: any = {};
         return new Promise(async (resolve, reject) => {
             try {
@@ -222,6 +234,7 @@ export class EtaDeviationService {
                         whereObj['origin_code'] = origin
                     }
                     else if (accounts !== '') {
+                        accounts = accounts.split(",")
                         whereObj['shipper'] = accounts
                     }
                     whereObj['shipper_org_group'] = shipperOrgId
@@ -236,6 +249,7 @@ export class EtaDeviationService {
                         whereObj['origin_code'] = origin
                     }
                     if (accounts !== '') {
+                        accounts = accounts.split(",")
                         whereObj['shipper'] = accounts
                     }
                     whereObj['etaDeviation'] = { [Op.gt]: 0 }
@@ -256,21 +270,22 @@ export class EtaDeviationService {
                 let attributes: any;
                 let directShipments: any = [];
                 let transShipments: any = [];
+                if (accounts !== '') {
+                    accounts = accounts.split(",")
+                    whereObj['shipper'] = { [Op.in]: [accounts] }
+                }
                 if (destination !== '') {
                     whereObj['destination_code'] = destination
                 }
                 if (origin !== '') {
                     whereObj['origin_code'] = origin
                 }
-                if (accounts !== '') {
-                    whereObj['shipper'] = accounts
-                }
                 if (startDate !== '' && endDate !== '') {
                     whereObj['shipment_confirmed_date'] = { [Op.between]: [startDate, endDate] }
                 }
                 whereObj['shipment_status'] = 'DELIVERED'
                 whereObj['shipper_org_group'] = shipperOrgId
-                attributes = ['destination_code', 'shipper', 'consginee_name', 'sshipment_id', 'hawb', 'parent_id', 'leg1_destination_country', 'leg1_ata_date', 'leg2_ata_date', 'leg3_ata_date', 'leg4_ata_date', 'leg5_ata_date', 'smode_of_transport', 'incoterms', 'carrier', 'shipment_confirmed_date', 'planned_pickupdate', 'actual_pickupdate', 'actual_timeofdispatch', 'shipment_eta', 'shipper_reference', 'shipment_status', ['deviation_status', 'deviation'], ['origin', 'origin_name'], ['shipment_destination', 'destination_name'], ['shipment_origin_country', 'origin_country_name'], ['shipment_destination_country', 'destination_country_name']]
+                attributes = ['destination_code', 'shipper', 'consginee_name', 'sshipment_id', 'hawb', 'parent_id', 'leg1_destination_country', 'leg1_ata_date', 'leg2_ata_date', 'leg3_ata_date', 'leg4_ata_date', 'leg5_ata_date', 'smode_of_transport', 'incoterms', 'carrier', 'shipment_confirmed_date', 'planned_pickupdate', 'actual_pickupdate', 'actual_timeofdispatch', 'shipment_eta', 'shipper_reference', 'shipment_status', ['deviation_status', 'deviation'], ['origin', 'origin_name'], ['shipment_destination', 'destination_name'], ['shipment_origin_country', 'origin_country_name'], ['shipment_destination_country', 'destination_country_name'],'etacount']
                 let etaDetails: any = await this.imShipmentAnalyticsCostRepository.getEtaDetails(whereObj, attributes);
                 console.log("etadetails", etaDetails)
                 for (let i = 0; i < etaDetails.length; i++) {
@@ -296,12 +311,39 @@ export class EtaDeviationService {
             }
         })
     }
-    async getOriginCodes(shipperOrgId: any): Promise<any> {
+
+    async getParentDeviationDetails(parent_id: any): Promise<any> {
+        let whereObj: any = {};
+        return new Promise(async (resolve, reject) => {
+            try {
+                let attributes: any;
+                // if (parent_id !== '') {
+                //     whereObj['parent_id'] = parent_id
+                // }
+                // whereObj['shipper_org_group'] = shipperOrgId
+                attributes = ['maxid','hawb','parent_id','event_code','event_desc','event_type','shipment_eta','event_date','shipment_status','lspOrgId','shipper_org_group','shipperAccountNumber']
+                let etaDetails: any = await this.imShipmentAnalyticsCostRepository.getParentEtaDeviationDetails(parent_id);
+                //console.log("etaDetailsssss2222",etaDetails.status.message.length)
+                let etaDetails1 = etaDetails.status.message
+                for (let i = 0; i < etaDetails1.length; i++) {
+                    //console.log("etaDetails1[i]",etaDetails1[i])
+                    etaDetails1[i].shipment_eta = await this.getDateFormat(etaDetails1[i].shipment_eta)
+                }
+                console.log("etadetails",etaDetails1)
+                return resolve(etaDetails1)
+            } catch (e) {
+                reject(e)
+            }
+        })
+    }
+    async getOriginCodes(shipperOrgId: any,shipperAccountNumber:any): Promise<any> {
         let whereObj: any = {};
         return new Promise(async (resolve, reject) => {
             try {
                 whereObj['shipper_org_group'] = shipperOrgId
                 let imShipmentAnalyticsCost: any = await this.iMShipmentAnalyticsRepository.getOriginCodes(whereObj);
+                imShipmentAnalyticsCost.map((v: { accounts: any; })=>v.accounts)
+
                 return resolve({ "result": imShipmentAnalyticsCost })
             } catch (e) {
                 reject(e)

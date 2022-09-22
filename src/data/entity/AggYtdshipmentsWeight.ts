@@ -21,11 +21,12 @@ export interface AggYtdshipmentsWeightAttributes {
   shipment_destination?: string;
   shipment_destination_country?: string;
   lsporgid?: string;
+  shipperAccountNumber?: string;
 }
 
 export type AggYtdshipmentsWeightPk = "id";
 export type AggYtdshipmentsWeightId = AggYtdshipmentsWeight[AggYtdshipmentsWeightPk];
-export type AggYtdshipmentsWeightOptionalAttributes = "id" | "origin_country" | "year_number" | "modeof_transport" | "month" | "year_month" | "destination_country" | "totchargeable_weight" | "countofHawb" | "shipper_org_group" | "volume_uom" | "volume" | "shipment_creation_date_time" | "month_number" | "shipment_origin" | "shipment_origin_country" | "shipment_destination" | "shipment_destination_country" | "lsporgid";
+export type AggYtdshipmentsWeightOptionalAttributes = "id" | "origin_country" | "year_number" | "modeof_transport" | "month" | "year_month" | "destination_country" | "totchargeable_weight" | "countofHawb" | "shipper_org_group" | "volume_uom" | "volume" | "shipment_creation_date_time" | "month_number" | "shipment_origin" | "shipment_origin_country" | "shipment_destination" | "shipment_destination_country" | "lsporgid" | "shipperAccountNumber";
 export type AggYtdshipmentsWeightCreationAttributes = Optional<AggYtdshipmentsWeightAttributes, AggYtdshipmentsWeightOptionalAttributes>;
 
 export class AggYtdshipmentsWeight extends Model<AggYtdshipmentsWeightAttributes, AggYtdshipmentsWeightCreationAttributes> implements AggYtdshipmentsWeightAttributes {
@@ -48,6 +49,7 @@ export class AggYtdshipmentsWeight extends Model<AggYtdshipmentsWeightAttributes
   shipment_destination?: string;
   shipment_destination_country?: string;
   lsporgid?: string;
+  shipperAccountNumber?: string;
 
 
   static initModel(sequelize: Sequelize.Sequelize): typeof AggYtdshipmentsWeight {
@@ -128,6 +130,10 @@ export class AggYtdshipmentsWeight extends Model<AggYtdshipmentsWeightAttributes
     },
     lsporgid: {
       type: DataTypes.STRING(45),
+      allowNull: true
+    },
+    shipperAccountNumber: {
+      type: DataTypes.STRING(50),
       allowNull: true
     }
   }, {

@@ -14,11 +14,12 @@ export interface AggOtifrootcausesAttributes {
   shipper_org_group?: string;
   annettime?: number;
   totnetontime?: number;
+  shipperAccountNumber?: string;
 }
 
 export type AggOtifrootcausesPk = "id";
 export type AggOtifrootcausesId = AggOtifrootcauses[AggOtifrootcausesPk];
-export type AggOtifrootcausesOptionalAttributes = "id" | "origin_country" | "year_number" | "modeof_transport" | "month" | "year_month" | "standardized_otifrootcauses" | "shipments" | "gross_ontime" | "shipper_org_group" | "annettime" | "totnetontime";
+export type AggOtifrootcausesOptionalAttributes = "id" | "origin_country" | "year_number" | "modeof_transport" | "month" | "year_month" | "standardized_otifrootcauses" | "shipments" | "gross_ontime" | "shipper_org_group" | "annettime" | "totnetontime" | "shipperAccountNumber";
 export type AggOtifrootcausesCreationAttributes = Optional<AggOtifrootcausesAttributes, AggOtifrootcausesOptionalAttributes>;
 
 export class AggOtifrootcauses extends Model<AggOtifrootcausesAttributes, AggOtifrootcausesCreationAttributes> implements AggOtifrootcausesAttributes {
@@ -34,6 +35,7 @@ export class AggOtifrootcauses extends Model<AggOtifrootcausesAttributes, AggOti
   shipper_org_group?: string;
   annettime?: number;
   totnetontime?: number;
+  shipperAccountNumber?: string;
 
 
   static initModel(sequelize: Sequelize.Sequelize): typeof AggOtifrootcauses {
@@ -86,6 +88,10 @@ export class AggOtifrootcauses extends Model<AggOtifrootcausesAttributes, AggOti
     },
     totnetontime: {
       type: DataTypes.INTEGER,
+      allowNull: true
+    },
+    shipperAccountNumber: {
+      type: DataTypes.STRING(50),
       allowNull: true
     }
   }, {

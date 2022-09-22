@@ -97,11 +97,12 @@ export interface FactOperationalDataAttributes {
   shipper_org_group?: string;
   parent_id?: string;
   lsporgid?: string;
+  shipper_reference?: string;
 }
 
 export type FactOperationalDataPk = "id";
 export type FactOperationalDataId = FactOperationalData[FactOperationalDataPk];
-export type FactOperationalDataOptionalAttributes = "id" | "hawb" | "shipment_reference_num" | "consignee_reference" | "console_reference_num" | "airline_prifix" | "mawb" | "freight_terms" | "total_volume" | "shipment_service_code" | "weight_uom" | "content_description" | "hbcreationdate" | "total_pieces" | "actual_arrival" | "total_weight" | "chargeable_weight" | "gross_ontime" | "security_pripaid" | "fuel_prepaid" | "export_freightcharges" | "total_cost" | "preference_level" | "podday" | "hbday" | "wdays_pickupto_pod" | "elapsed_days" | "dis_description" | "dis_timestamp" | "pod_name" | "pod" | "estimated_arrival" | "container_weight" | "infull" | "rebooked" | "rebooked_gsk" | "damage" | "temp_deviation" | "frozen" | "remark" | "action" | "actiondate" | "actionby" | "standardized_action" | "standardized_otifrootcauses" | "netontime" | "class" | "lane" | "rebooking" | "shipment_count" | "damage_intact" | "coldchain" | "nofreeze" | "modeof_transport" | "active_status" | "reporting" | "language" | "service_reportings" | "complaints" | "cost_saving" | "accuracy_document" | "pickup" | "deviation_management" | "destairline_id" | "consignee_id" | "dest_id" | "org_id" | "shipper_id" | "dimtime_id" | "dimpickup_id" | "dimdelivery_id" | "cancelledby" | "cancelled" | "carbon_netural" | "carbon_positive" | "carbon_calculation" | "reason_forbreach" | "cost_avoidance" | "amount_avoidance" | "reason_avoidance" | "cost_currencytype" | "createdAt" | "updatedAt" | "deletedAt" | "shipper_org_group" | "parent_id" | "lsporgid";
+export type FactOperationalDataOptionalAttributes = "id" | "hawb" | "shipment_reference_num" | "consignee_reference" | "console_reference_num" | "airline_prifix" | "mawb" | "freight_terms" | "total_volume" | "shipment_service_code" | "weight_uom" | "content_description" | "hbcreationdate" | "total_pieces" | "actual_arrival" | "total_weight" | "chargeable_weight" | "gross_ontime" | "security_pripaid" | "fuel_prepaid" | "export_freightcharges" | "total_cost" | "preference_level" | "podday" | "hbday" | "wdays_pickupto_pod" | "elapsed_days" | "dis_description" | "dis_timestamp" | "pod_name" | "pod" | "estimated_arrival" | "container_weight" | "infull" | "rebooked" | "rebooked_gsk" | "damage" | "temp_deviation" | "frozen" | "remark" | "action" | "actiondate" | "actionby" | "standardized_action" | "standardized_otifrootcauses" | "netontime" | "class" | "lane" | "rebooking" | "shipment_count" | "damage_intact" | "coldchain" | "nofreeze" | "modeof_transport" | "active_status" | "reporting" | "language" | "service_reportings" | "complaints" | "cost_saving" | "accuracy_document" | "pickup" | "deviation_management" | "destairline_id" | "consignee_id" | "dest_id" | "org_id" | "shipper_id" | "dimtime_id" | "dimpickup_id" | "dimdelivery_id" | "cancelledby" | "cancelled" | "carbon_netural" | "carbon_positive" | "carbon_calculation" | "reason_forbreach" | "cost_avoidance" | "amount_avoidance" | "reason_avoidance" | "cost_currencytype" | "createdAt" | "updatedAt" | "deletedAt" | "shipper_org_group" | "parent_id" | "lsporgid" | "shipper_reference";
 export type FactOperationalDataCreationAttributes = Optional<FactOperationalDataAttributes, FactOperationalDataOptionalAttributes>;
 
 export class FactOperationalData extends Model<FactOperationalDataAttributes, FactOperationalDataCreationAttributes> implements FactOperationalDataAttributes {
@@ -192,6 +193,7 @@ export class FactOperationalData extends Model<FactOperationalDataAttributes, Fa
   shipper_org_group?: string;
   parent_id?: string;
   lsporgid?: string;
+  shipper_reference?: string;
 
   // FactOperationalData belongsTo DimConsignee via consignee_id
   consignee!: DimConsignee;
@@ -605,6 +607,10 @@ export class FactOperationalData extends Model<FactOperationalDataAttributes, Fa
     },
     lsporgid: {
       type: DataTypes.STRING(45),
+      allowNull: true
+    },
+    shipper_reference: {
+      type: DataTypes.STRING(100),
       allowNull: true
     }
   }, {

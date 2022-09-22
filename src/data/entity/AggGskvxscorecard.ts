@@ -28,11 +28,12 @@ export interface AggGskvxscorecardAttributes {
   shipment_origin?: string;
   shipment_origin_country?: string;
   lsporgid?: string;
+  shipperAccountNumber?: string;
 }
 
 export type AggGskvxscorecardPk = "id";
 export type AggGskvxscorecardId = AggGskvxscorecard[AggGskvxscorecardPk];
-export type AggGskvxscorecardOptionalAttributes = "id" | "origin_country" | "year_number" | "modeof_transport" | "month" | "year_month" | "month_number" | "shipments" | "rebookingdhl" | "rebookinggsk" | "reporting" | "language" | "complaints" | "accuracy_document" | "grass_ontime" | "netontime" | "infull" | "damage" | "coldchain" | "nofreeze" | "pickup" | "deviation_management" | "shipper_org_group" | "shipment_origin" | "shipment_origin_country" | "lsporgid";
+export type AggGskvxscorecardOptionalAttributes = "id" | "origin_country" | "year_number" | "modeof_transport" | "month" | "year_month" | "month_number" | "shipments" | "rebookingdhl" | "rebookinggsk" | "reporting" | "language" | "complaints" | "accuracy_document" | "grass_ontime" | "netontime" | "infull" | "damage" | "coldchain" | "nofreeze" | "pickup" | "deviation_management" | "shipper_org_group" | "shipment_origin" | "shipment_origin_country" | "lsporgid" | "shipperAccountNumber";
 export type AggGskvxscorecardCreationAttributes = Optional<AggGskvxscorecardAttributes, AggGskvxscorecardOptionalAttributes>;
 
 export class AggGskvxscorecard extends Model<AggGskvxscorecardAttributes, AggGskvxscorecardCreationAttributes> implements AggGskvxscorecardAttributes {
@@ -62,6 +63,7 @@ export class AggGskvxscorecard extends Model<AggGskvxscorecardAttributes, AggGsk
   shipment_origin?: string;
   shipment_origin_country?: string;
   lsporgid?: string;
+  shipperAccountNumber?: string;
 
 
   static initModel(sequelize: Sequelize.Sequelize): typeof AggGskvxscorecard {
@@ -172,6 +174,10 @@ export class AggGskvxscorecard extends Model<AggGskvxscorecardAttributes, AggGsk
     },
     lsporgid: {
       type: DataTypes.STRING(45),
+      allowNull: true
+    },
+    shipperAccountNumber: {
+      type: DataTypes.STRING(50),
       allowNull: true
     }
   }, {

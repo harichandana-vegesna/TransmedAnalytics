@@ -2,6 +2,8 @@ import { Logger } from "../logger/Logger";
 import { DI } from '../di/DIContainer';
 import { AirLinePerformanceRepository } from "../data/repository/AirLinePerformanceRepository"
 import { QueryBuilder } from "../util/QueryBuilder";
+const { Op } = require('sequelize');
+
 import { any } from "bluebird";
 
 
@@ -15,7 +17,7 @@ export class AirLinePerformanceService {
         this.queryBuilder = DI.get(QueryBuilder);
     }
 
-    async getAirLinePerformanceData(originCountry?: any, monthNumber?: any, year?: any,sort?: any,colSearch?: any,shipperOrgId?:any): Promise<any> {
+    async getAirLinePerformanceData(originCountry?: any, monthNumber?: any, year?: any,sort?: any,colSearch?: any,shipperOrgId?:any,shipperAccountNumber?:any): Promise<any> {
         let whereObj: any = {};
         return new Promise(async (resolve, reject) => {
             try {
@@ -25,7 +27,10 @@ export class AirLinePerformanceService {
                 let obj: any = {};
                 //Building a sort Object
                 sortArrayOfArrays = this.queryBuilder.buildSortObj(sort);
-
+                if (shipperAccountNumber !== '') {
+                    shipperAccountNumber = shipperAccountNumber.split(",")
+                    whereObj['shipperAccountNumber'] = { [Op.in]: [shipperAccountNumber] }
+                }
                 if (originCountry !== '') {
                     whereObj['origin_country'] = originCountry
                 }

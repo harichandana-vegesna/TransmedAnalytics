@@ -14,7 +14,7 @@ export class GskVxScorecardService {
         this.queryBuilder = DI.get(QueryBuilder);
     }
 
-    async getScorecardsData(originCountry?: any, monthNumber?: any, year?: any,sort?: any, colSearch?: any,shipperOrgId?:any): Promise<any> {
+    async getScorecardsData(originCountry?: any, monthNumber?: any, year?: any,sort?: any, colSearch?: any,shipperOrgId?:any,shipperAccountNumber?:any): Promise<any> {
         let whereObj: any = {};
         let totalRecordswhereObj: any = {};
         return new Promise(async (resolve, reject) => {
@@ -26,8 +26,10 @@ export class GskVxScorecardService {
                 let totalGskRecords: any;
                 //Building a sort Object
                 sortArrayOfArrays = this.queryBuilder.buildSortObj(sort);
-                if (originCountry !== '') {
-                    whereObj['origin_country'] = originCountry
+                
+                if (shipperAccountNumber !== '') {
+                    shipperAccountNumber = shipperAccountNumber.split(",")
+                    whereObj['shipperAccountNumber'] = shipperAccountNumber
                 }
                 if (monthNumber !== '') {
                     whereObj['month'] = monthNumber
@@ -36,7 +38,19 @@ export class GskVxScorecardService {
                     whereObj['year_number'] = year
                 }
                 whereObj['shipper_org_group'] = shipperOrgId
-                let scorecardData: any = await this.gskVxScorecardRepository.get(whereObj, sortArrayOfArrays);
+                let scorecardData: any
+                if (originCountry !== '') {
+                    whereObj['origin_country'] = originCountry
+                    scorecardData = await this.gskVxScorecardRepository.get(whereObj, sortArrayOfArrays);
+
+                }else{
+                    console.log("else block")
+                    scorecardData = await this.gskVxScorecardRepository.getDetailsByMonth(whereObj);
+                    scorecardData.forEach((element: { origin_country: string; }) => {
+                        element.origin_country = 'All Regions'
+                    });
+                    this.logger.log("scorecardData",scorecardData)
+                }
                 if (scorecardData.length > 0) {
                     totalGskRecords = scorecardData.length;
                     let totalShipments = scorecardData.map((totalShipment: { shipments: any; }) => totalShipment.shipments).reduce((a: any, acc: any) => parseInt(a) + parseInt(acc))

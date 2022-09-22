@@ -42,7 +42,7 @@ export class AnalyticsController implements Controller {
     getRouter(): Router {
         const router = Router();
 
-        router.get('/kpiData',this.verifyJwtTokenService.verifyToken, async (req: Request, res: Response, next: NextFunction) => {
+        router.get('/kpiData', async (req: Request, res: Response, next: NextFunction) => {
             try {
 
                 let response: any;
@@ -51,6 +51,7 @@ export class AnalyticsController implements Controller {
                 let colSearch = req.param('colSearch');
                 (colSearch != undefined && colSearch != null) ? colSearch = JSON.parse(req.param('colSearch')) : '';
                 let originCountry = req.param('origin_country');
+                let shipperAccountNumber = req.param('accounts')
                 let month = req.param('month');
                 let year = req.param('year')
                 let shipperOrgId = req.param('shipperOrgId')
@@ -59,6 +60,12 @@ export class AnalyticsController implements Controller {
                 }
                 else {
                     originCountry = req.param('origin_country');
+                }
+                if (shipperAccountNumber === undefined || shipperAccountNumber === '' || shipperAccountNumber.length === 0) {
+                    shipperAccountNumber = ''
+                }
+                else {
+                    shipperAccountNumber = req.param('accounts');
                 }
                 if (month === undefined) {
                     month = ''
@@ -70,7 +77,7 @@ export class AnalyticsController implements Controller {
                 } else {
                     year = req.param('year');
                 }                   
-                dataResult = await this.GskVxScorecardService.getScorecardsData(originCountry, month, year,sortObject, colSearch,shipperOrgId)
+                dataResult = await this.GskVxScorecardService.getScorecardsData(originCountry, month, year,sortObject, colSearch,shipperOrgId,shipperAccountNumber)
                 response = new FetchResponse(new ResponseStatus(ResponseCode.SUCCESS, "Retrieved Successfully"), dataResult)
                 res.json(response);
             } catch (error) {
@@ -91,6 +98,13 @@ export class AnalyticsController implements Controller {
                 let startDate = req.param('startDate');
                 let endDate = req.param('endDate')
                 let shipperOrgId = req.param('shipperOrgId')
+                let shipperAccountNumber = req.param('accounts')
+                if (shipperAccountNumber === undefined || shipperAccountNumber === '' || shipperAccountNumber.length === 0) {
+                    shipperAccountNumber = ''
+                }
+                else {
+                    shipperAccountNumber = req.param('accounts');
+                }
                 if (originCountry === undefined) {
                     originCountry = ''
                 }
@@ -120,7 +134,7 @@ export class AnalyticsController implements Controller {
                 // else {
                 //     year = req.param('year_number');
                 // }  
-                dataResult = await this.OTPerformanceService.getOtPerformance(originCountry, startDate, endDate,shipperOrgId)
+                dataResult = await this.OTPerformanceService.getOtPerformance(originCountry, startDate, endDate,shipperOrgId,shipperAccountNumber)
                 response = new FetchResponse(new ResponseStatus(ResponseCode.SUCCESS, "Retrieved Successfully"), dataResult)
                 res.json(response);
             } catch (error) {
@@ -139,6 +153,13 @@ export class AnalyticsController implements Controller {
                 let year = req.param('year_number');
                 let month = req.param('month');
                 let shipperOrgId = req.param('shipperOrgId')
+                let shipperAccountNumber = req.param('accounts')
+                if (shipperAccountNumber === undefined || shipperAccountNumber === '' || shipperAccountNumber.length === 0) {
+                    shipperAccountNumber = ''
+                }
+                else {
+                    shipperAccountNumber = req.param('accounts');
+                }
                 if (originCountry === undefined) {
                     originCountry = ''
                 }
@@ -156,7 +177,7 @@ export class AnalyticsController implements Controller {
                 else {
                     year = req.param('year_number');
                 }                 
-                dataResult = await this.OtifRootCausesService.getOtifRootCauses(originCountry, month, year,shipperOrgId)
+                dataResult = await this.OtifRootCausesService.getOtifRootCauses(originCountry, month, year,shipperOrgId,shipperAccountNumber)
                 response = new FetchResponse(new ResponseStatus(ResponseCode.SUCCESS, "Retrieved Successfully"), dataResult)
                 res.json(response);
             } catch (error) {
@@ -177,6 +198,14 @@ export class AnalyticsController implements Controller {
                 (colSearch != undefined && colSearch != null) ? colSearch = JSON.parse(req.param('colSearch')) : '';
                 let month = req.param('month');
                 let shipperOrgId = req.param('shipperOrgId')
+                let shipperAccountNumber = req.param('accounts')
+
+                if (shipperAccountNumber === undefined || shipperAccountNumber === '' || shipperAccountNumber.length === 0) {
+                    shipperAccountNumber = ''
+                }
+                else {
+                    shipperAccountNumber = req.param('accounts');
+                }
                 if (month === undefined) {
                     month = ''
                 } else {
@@ -187,7 +216,7 @@ export class AnalyticsController implements Controller {
                 } else {
                     year = req.param('year_number');
                 }  
-                dataResult = await this.LaneoverviewService.getLaneoverview(month,sortObject, colSearch,shipperOrgId,year)
+                dataResult = await this.LaneoverviewService.getLaneoverview(month,sortObject, colSearch,shipperOrgId,year,shipperAccountNumber)
                 response = new FetchResponse(new ResponseStatus(ResponseCode.SUCCESS, "Retrieved Successfully"), dataResult)
                 res.json(response);
             } catch (error) {
@@ -203,11 +232,19 @@ export class AnalyticsController implements Controller {
                 let response: any;
                 let dataResult: any;
                 let originCountry = req.param('origin_country');
+                let shipperAccountNumber = req.param('accounts')
+
                 // let month = req.param('month');
                 // let year = req.param('year_number')
                 let startDate = req.param('startDate');
                 let endDate = req.param('endDate')
                 let shipperOrgId = req.param('shipperOrgId')
+                if (shipperAccountNumber === undefined || shipperAccountNumber === '' || shipperAccountNumber.length === 0) {
+                    shipperAccountNumber = ''
+                }
+                else {
+                    shipperAccountNumber = req.param('accounts');
+                }
                 if (originCountry === undefined) {
                     originCountry = ''
                 } else {
@@ -235,7 +272,7 @@ export class AnalyticsController implements Controller {
                 // } else {
                 //     year = req.param('year_number');
                 // }                 
-                dataResult = await this.yTDShipmentsAndWeightService.getYTDShipmentsAndWeight(originCountry, startDate, endDate,shipperOrgId)
+                dataResult = await this.yTDShipmentsAndWeightService.getYTDShipmentsAndWeight(originCountry, startDate, endDate,shipperOrgId,shipperAccountNumber)
                 response = new FetchResponse(new ResponseStatus(ResponseCode.SUCCESS, "Retrieved Successfully"), dataResult)
                 res.json(response);
             } catch (error) {
@@ -253,6 +290,8 @@ export class AnalyticsController implements Controller {
                 // let month = req.param('month');
                 // let year = req.param('year_number');
                 let startDate = req.param('startDate');
+                let shipperAccountNumber = req.param('accounts')
+
                 let endDate = req.param('endDate')
                 let originCountry = req.param('origin_country')
                 let shipperOrgId = req.param('shipperOrgId')
@@ -266,6 +305,12 @@ export class AnalyticsController implements Controller {
                 // } else {
                 //     year = req.param('year_number');
                 // }
+                if (shipperAccountNumber === undefined || shipperAccountNumber === '' || shipperAccountNumber.length === 0) {
+                    shipperAccountNumber = ''
+                }
+                else {
+                    shipperAccountNumber = req.param('accounts');
+                }
                 if(startDate === undefined || startDate === ''){
                     startDate = ''
                 }
@@ -283,7 +328,7 @@ export class AnalyticsController implements Controller {
                 } else {
                     originCountry = req.param('origin_country');
                 }                
-                dataResult = await this.yTDShipmentsAndWeightService.getShipmentsByMonthAndYr(startDate, endDate,originCountry,shipperOrgId)
+                dataResult = await this.yTDShipmentsAndWeightService.getShipmentsByMonthAndYr(startDate, endDate,originCountry,shipperOrgId,shipperAccountNumber)
                 response = new FetchResponse(new ResponseStatus(ResponseCode.SUCCESS, "Retrieved Successfully"), dataResult)
                 res.json(response);
             } catch (error) {
@@ -302,11 +347,18 @@ export class AnalyticsController implements Controller {
                 let destinationCountry = req.param('destination_code')
                 let shipperOrgId = req.param('shipperOrgId')
                 let lspOrgId = req.param('lspOrgId')
+                let shipperAccountNumber = req.param('accounts')
 
                 // let month = req.param('month');
                 // let year = req.param('year_number');
                 let startDate = req.param('startDate');
                 let endDate = req.param('endDate')
+                if (shipperAccountNumber === undefined || shipperAccountNumber === '' || shipperAccountNumber.length === 0) {
+                    shipperAccountNumber = ''
+                }
+                else {
+                    shipperAccountNumber = req.param('accounts');
+                }
                 if(startDate === undefined || startDate === ''){
                     startDate = ''
                 }
@@ -329,7 +381,7 @@ export class AnalyticsController implements Controller {
                 // } else {
                 //     year = req.param('year_number');
                 // }              
-                dataResult = await this.yTDShipmentsAndWeightService.getShipmentsByOrigin(originCountry,destinationCountry,shipperOrgId,startDate,endDate,lspOrgId)
+                dataResult = await this.yTDShipmentsAndWeightService.getShipmentsByOrigin(originCountry,destinationCountry,shipperOrgId,startDate,endDate,lspOrgId,shipperAccountNumber)
                 response = new FetchResponse(new ResponseStatus(ResponseCode.SUCCESS, "Retrieved Successfully"), dataResult)
                 res.json(response);
             } catch (error) {
@@ -492,6 +544,13 @@ export class AnalyticsController implements Controller {
                 let month = req.param('month');
                 let year = req.param('year')
                 let shipperOrgId = req.param('shipperOrgId')
+                let shipperAccountNumber = req.param('accounts')
+                if (shipperAccountNumber === undefined || shipperAccountNumber === '' || shipperAccountNumber.length === 0) {
+                    shipperAccountNumber = ''
+                }
+                else {
+                    shipperAccountNumber = req.param('accounts');
+                }
                 if (originCountry === undefined) {
                     originCountry = ''
                 }
@@ -508,7 +567,7 @@ export class AnalyticsController implements Controller {
                 } else {
                     year = req.param('year');
                 }              
-                dataResult = await this.airLinePerformanceService.getAirLinePerformanceData(originCountry, month, year,sortObject, colSearch,shipperOrgId)
+                dataResult = await this.airLinePerformanceService.getAirLinePerformanceData(originCountry, month, year,sortObject, colSearch,shipperOrgId,shipperAccountNumber)
                 response = new FetchResponse(new ResponseStatus(ResponseCode.SUCCESS, "Retrieved Successfully"), dataResult)
                 res.json(response);
             } catch (error) {
@@ -582,6 +641,13 @@ export class AnalyticsController implements Controller {
                 let month = req.param('month');
                 let year = req.param('year');
                 let shipperOrgId = req.param('shipperOrgId');
+                let shipperAccountNumber = req.param('accounts')
+                if (shipperAccountNumber === undefined || shipperAccountNumber === '' || shipperAccountNumber.length === 0) {
+                    shipperAccountNumber = ''
+                }
+                else {
+                    shipperAccountNumber = req.param('accounts');
+                }
                 if (originCountry === undefined || originCountry === '') {
                     originCountry = ''
                 }
@@ -598,7 +664,7 @@ export class AnalyticsController implements Controller {
                 } else {
                     year = req.param('year');
                 }
-                dataResult = await this.rebookingAndCancellationService.getRebookingAndCancellationData(originCountry, month, year,shipperOrgId)
+                dataResult = await this.rebookingAndCancellationService.getRebookingAndCancellationData(originCountry, month, year,shipperOrgId,shipperAccountNumber)
                 response = new FetchResponse(new ResponseStatus(ResponseCode.SUCCESS, "Retrieved Successfully"), dataResult)
                 res.json(response);
             } catch (error) {

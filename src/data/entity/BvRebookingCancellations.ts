@@ -22,9 +22,10 @@ export interface BvRebookingCancellationsAttributes {
   origin_code?: string;
   destination_code?: string;
   lsporgid?: string;
+  shipperAccountNumber?: string;
 }
 
-export type BvRebookingCancellationsOptionalAttributes = "month" | "hawb" | "mb" | "shipper_reference" | "origin" | "destination" | "airline" | "numof_rebookings_shipment" | "cost_avoidance" | "comments" | "year_number" | "shipper_org_group" | "parent_id" | "shipment_origin_country" | "shipment_origin" | "shipment_destination" | "shipment_destination_country" | "origin_code" | "destination_code" | "lsporgid";
+export type BvRebookingCancellationsOptionalAttributes = "month" | "hawb" | "mb" | "shipper_reference" | "origin" | "destination" | "airline" | "numof_rebookings_shipment" | "cost_avoidance" | "comments" | "year_number" | "shipper_org_group" | "parent_id" | "shipment_origin_country" | "shipment_origin" | "shipment_destination" | "shipment_destination_country" | "origin_code" | "destination_code" | "lsporgid" | "shipperAccountNumber";
 export type BvRebookingCancellationsCreationAttributes = Optional<BvRebookingCancellationsAttributes, BvRebookingCancellationsOptionalAttributes>;
 
 export class BvRebookingCancellations extends Model<BvRebookingCancellationsAttributes, BvRebookingCancellationsCreationAttributes> implements BvRebookingCancellationsAttributes {
@@ -48,6 +49,7 @@ export class BvRebookingCancellations extends Model<BvRebookingCancellationsAttr
   origin_code?: string;
   destination_code?: string;
   lsporgid?: string;
+  shipperAccountNumber?: string;
 
 
   static initModel(sequelize: Sequelize.Sequelize): typeof BvRebookingCancellations {
@@ -134,6 +136,10 @@ export class BvRebookingCancellations extends Model<BvRebookingCancellationsAttr
     },
     lsporgid: {
       type: DataTypes.STRING(45),
+      allowNull: true
+    },
+    shipperAccountNumber: {
+      type: DataTypes.STRING(300),
       allowNull: true
     }
   }, {

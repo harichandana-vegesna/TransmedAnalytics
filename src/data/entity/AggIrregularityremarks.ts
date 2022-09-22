@@ -17,11 +17,12 @@ export interface AggIrregularityremarksAttributes {
   actiondate?: string;
   actionby?: string;
   shipper_org_group?: string;
+  shipperAccountNumber?: string;
 }
 
 export type AggIrregularityremarksPk = "id";
 export type AggIrregularityremarksId = AggIrregularityremarks[AggIrregularityremarksPk];
-export type AggIrregularityremarksOptionalAttributes = "id" | "origin_country" | "year_number" | "modeof_transport" | "month" | "month_number" | "mawb" | "hawb" | "airline_name" | "class" | "remark" | "action" | "actiondate" | "actionby" | "shipper_org_group";
+export type AggIrregularityremarksOptionalAttributes = "id" | "origin_country" | "year_number" | "modeof_transport" | "month" | "month_number" | "mawb" | "hawb" | "airline_name" | "class" | "remark" | "action" | "actiondate" | "actionby" | "shipper_org_group" | "shipperAccountNumber";
 export type AggIrregularityremarksCreationAttributes = Optional<AggIrregularityremarksAttributes, AggIrregularityremarksOptionalAttributes>;
 
 export class AggIrregularityremarks extends Model<AggIrregularityremarksAttributes, AggIrregularityremarksCreationAttributes> implements AggIrregularityremarksAttributes {
@@ -40,6 +41,7 @@ export class AggIrregularityremarks extends Model<AggIrregularityremarksAttribut
   actiondate?: string;
   actionby?: string;
   shipper_org_group?: string;
+  shipperAccountNumber?: string;
 
 
   static initModel(sequelize: Sequelize.Sequelize): typeof AggIrregularityremarks {
@@ -104,6 +106,10 @@ export class AggIrregularityremarks extends Model<AggIrregularityremarksAttribut
     },
     shipper_org_group: {
       type: DataTypes.STRING(100),
+      allowNull: true
+    },
+    shipperAccountNumber: {
+      type: DataTypes.STRING(50),
       allowNull: true
     }
   }, {

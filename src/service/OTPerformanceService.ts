@@ -14,13 +14,17 @@ export class OTPerformanceService {
         this.queryBuilder = DI.get(QueryBuilder);
     }
 
-    async getOtPerformance(originCountry?: any, startDate?: any, endDate?: any, shipperOrgId?: any): Promise<any> {
+    async getOtPerformance(originCountry?: any, startDate?: any, endDate?: any, shipperOrgId?: any,shipperAccountNumber?:any): Promise<any> {
         let whereObj: any = {};
         return new Promise(async (resolve, reject) => {
             try {
                 let obj: any = {};
                 if (originCountry !== '') {
                     whereObj['origin_country'] = originCountry
+                }
+                if (shipperAccountNumber !== '') {
+                    shipperAccountNumber = shipperAccountNumber.split(",")
+                    whereObj['shipperAccountNumber'] = { [Op.in]: [shipperAccountNumber] }
                 }
                 if (startDate !== '' && endDate !== '') {
                     startDate = new Date(startDate)
