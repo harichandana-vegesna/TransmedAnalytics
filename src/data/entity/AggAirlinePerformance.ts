@@ -26,12 +26,11 @@ export interface AggAirlinePerformanceAttributes {
   shipment_origin?: string;
   shipment_origin_country?: string;
   lsporgid?: string;
-  shipperAccountNumber?: string;
 }
 
 export type AggAirlinePerformancePk = "id";
 export type AggAirlinePerformanceId = AggAirlinePerformance[AggAirlinePerformancePk];
-export type AggAirlinePerformanceOptionalAttributes = "id" | "origin_country" | "year_number" | "modeof_transport" | "month" | "row_lables" | "ontime_shipcount" | "ontime_shippercentage" | "rebookedgsk_shipcount" | "rebookedgsk_shippercentage" | "rebooked_shipcount" | "rebooked_shippercentage" | "inful_shipcount" | "ifnul_shippercentage" | "coldchain_shipments" | "coldchain_percentage" | "damage_shipcount" | "damage_shippercentage" | "totalshipments" | "totalpercentage" | "shipper_org_group" | "shipment_origin" | "shipment_origin_country" | "lsporgid" | "shipperAccountNumber";
+export type AggAirlinePerformanceOptionalAttributes = "id" | "origin_country" | "year_number" | "modeof_transport" | "month" | "row_lables" | "ontime_shipcount" | "ontime_shippercentage" | "rebookedgsk_shipcount" | "rebookedgsk_shippercentage" | "rebooked_shipcount" | "rebooked_shippercentage" | "inful_shipcount" | "ifnul_shippercentage" | "coldchain_shipments" | "coldchain_percentage" | "damage_shipcount" | "damage_shippercentage" | "totalshipments" | "totalpercentage" | "shipper_org_group" | "shipment_origin" | "shipment_origin_country" | "lsporgid";
 export type AggAirlinePerformanceCreationAttributes = Optional<AggAirlinePerformanceAttributes, AggAirlinePerformanceOptionalAttributes>;
 
 export class AggAirlinePerformance extends Model<AggAirlinePerformanceAttributes, AggAirlinePerformanceCreationAttributes> implements AggAirlinePerformanceAttributes {
@@ -59,7 +58,6 @@ export class AggAirlinePerformance extends Model<AggAirlinePerformanceAttributes
   shipment_origin?: string;
   shipment_origin_country?: string;
   lsporgid?: string;
-  shipperAccountNumber?: string;
 
 
   static initModel(sequelize: Sequelize.Sequelize): typeof AggAirlinePerformance {
@@ -162,10 +160,6 @@ export class AggAirlinePerformance extends Model<AggAirlinePerformanceAttributes
     },
     lsporgid: {
       type: DataTypes.STRING(45),
-      allowNull: true
-    },
-    shipperAccountNumber: {
-      type: DataTypes.STRING(50),
       allowNull: true
     }
   }, {

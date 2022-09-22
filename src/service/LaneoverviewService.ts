@@ -1,8 +1,6 @@
 import { Logger } from "../logger/Logger";
 import { DI } from '../di/DIContainer';
 import { LaneoverviewRepository } from "../data/repository/LaneoverviewRepository"
-const { Op } = require('sequelize');
-
 import { QueryBuilder } from "../util/QueryBuilder";
 
 
@@ -16,7 +14,7 @@ export class LaneoverviewService {
         this.queryBuilder = DI.get(QueryBuilder);
     }
 
-    async getLaneoverview(month?: any,sort?: any, colSearch?: any,shipperOrgId?:any,year?:any,shipperAccountNumber?:any): Promise<any> {
+    async getLaneoverview(month?: any,sort?: any, colSearch?: any,shipperOrgId?:any,year?:any): Promise<any> {
         let whereObj: any = {};
         return new Promise(async (resolve, reject) => {
             try {
@@ -26,10 +24,6 @@ export class LaneoverviewService {
                 let totalRecordsCount: any;
                 //Building a sort Object
                 sortArrayOfArrays = this.queryBuilder.buildSortObj(sort);
-                if (shipperAccountNumber !== '') {
-                    shipperAccountNumber = shipperAccountNumber.split(",")
-                    whereObj['shipperAccountNumber'] = { [Op.in]: [shipperAccountNumber] }
-                }
                 if (month !== '') {
                     whereObj['month'] = month
                 }

@@ -16,12 +16,11 @@ export interface AggGrossNetotPerformanceAttributes {
   totnetontime?: number;
   shipment_creation_date_time?: Date;
   month_number?: number;
-  shipperAccountNumber?: string;
 }
 
 export type AggGrossNetotPerformancePk = "id";
 export type AggGrossNetotPerformanceId = AggGrossNetotPerformance[AggGrossNetotPerformancePk];
-export type AggGrossNetotPerformanceOptionalAttributes = "id" | "origin_country" | "year_number" | "month" | "shipments" | "gross_ontime" | "netontime" | "shipper_org_group" | "agtime" | "totgrossontime" | "annettime" | "totnetontime" | "shipment_creation_date_time" | "month_number" | "shipperAccountNumber";
+export type AggGrossNetotPerformanceOptionalAttributes = "id" | "origin_country" | "year_number" | "month" | "shipments" | "gross_ontime" | "netontime" | "shipper_org_group" | "agtime" | "totgrossontime" | "annettime" | "totnetontime" | "shipment_creation_date_time" | "month_number";
 export type AggGrossNetotPerformanceCreationAttributes = Optional<AggGrossNetotPerformanceAttributes, AggGrossNetotPerformanceOptionalAttributes>;
 
 export class AggGrossNetotPerformance extends Model<AggGrossNetotPerformanceAttributes, AggGrossNetotPerformanceCreationAttributes> implements AggGrossNetotPerformanceAttributes {
@@ -39,7 +38,6 @@ export class AggGrossNetotPerformance extends Model<AggGrossNetotPerformanceAttr
   totnetontime?: number;
   shipment_creation_date_time?: Date;
   month_number?: number;
-  shipperAccountNumber?: string;
 
 
   static initModel(sequelize: Sequelize.Sequelize): typeof AggGrossNetotPerformance {
@@ -101,10 +99,6 @@ export class AggGrossNetotPerformance extends Model<AggGrossNetotPerformanceAttr
     },
     month_number: {
       type: DataTypes.INTEGER,
-      allowNull: true
-    },
-    shipperAccountNumber: {
-      type: DataTypes.STRING(50),
       allowNull: true
     }
   }, {

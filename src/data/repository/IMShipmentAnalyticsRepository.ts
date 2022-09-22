@@ -349,17 +349,4 @@ export class IMShipmentAnalyticsRepository extends Repository{
     
 
     }
-
-    async kpiDataUpdate(hawbNo: any): Promise<any> {
-        return await new Promise((resolve, reject) => {
-            ImShipmentAnalytics.sequelize?.query('CALL im_main_factoprdata_update(:P_hawb)',{replacements:{P_hawb:hawbNo}})
-            .then((get:any)=>{
-               resolve({ status: { code: 'SUCCESS', message: get } })
-            }).catch((error: any) => {
-                this.logger.error(error);
-                reject(error);
-            });
-            
-        })
-    }
 }

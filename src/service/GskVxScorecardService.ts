@@ -14,7 +14,7 @@ export class GskVxScorecardService {
         this.queryBuilder = DI.get(QueryBuilder);
     }
 
-    async getScorecardsData(originCountry?: any, monthNumber?: any, year?: any,sort?: any, colSearch?: any,shipperOrgId?:any,shipperAccountNumber?:any): Promise<any> {
+    async getScorecardsData(originCountry?: any, monthNumber?: any, year?: any,sort?: any, colSearch?: any,shipperOrgId?:any): Promise<any> {
         let whereObj: any = {};
         let totalRecordswhereObj: any = {};
         return new Promise(async (resolve, reject) => {
@@ -28,10 +28,6 @@ export class GskVxScorecardService {
                 sortArrayOfArrays = this.queryBuilder.buildSortObj(sort);
                 if (originCountry !== '') {
                     whereObj['origin_country'] = originCountry
-                }
-                if (shipperAccountNumber !== '') {
-                    shipperAccountNumber = shipperAccountNumber.split(",")
-                    whereObj['shipperAccountNumber'] = shipperAccountNumber
                 }
                 if (monthNumber !== '') {
                     whereObj['month'] = monthNumber

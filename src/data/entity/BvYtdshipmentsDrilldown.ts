@@ -24,10 +24,9 @@ export interface BvYtdshipmentsDrilldownAttributes {
   shipper_org_group?: string;
   parent_id?: string;
   lsporgid?: string;
-  shipper_reference?: string;
 }
 
-export type BvYtdshipmentsDrilldownOptionalAttributes = "Consignee_name" | "shipper_name" | "shipper" | "shipment_id" | "hawb" | "modeof_transport" | "inco_terms" | "carrier" | "shipment_confirmed_date" | "shipment_pickupdate" | "shipment_status" | "chargeable_weight" | "total_pieces" | "month" | "year" | "origin_code" | "origin_country" | "destination_code" | "destination_country" | "shipper_org_group" | "parent_id" | "lsporgid" | "shipper_reference";
+export type BvYtdshipmentsDrilldownOptionalAttributes = "Consignee_name" | "shipper_name" | "shipper" | "shipment_id" | "hawb" | "modeof_transport" | "inco_terms" | "carrier" | "shipment_confirmed_date" | "shipment_pickupdate" | "shipment_status" | "chargeable_weight" | "total_pieces" | "month" | "year" | "origin_code" | "origin_country" | "destination_code" | "destination_country" | "shipper_org_group" | "parent_id" | "lsporgid";
 export type BvYtdshipmentsDrilldownCreationAttributes = Optional<BvYtdshipmentsDrilldownAttributes, BvYtdshipmentsDrilldownOptionalAttributes>;
 
 export class BvYtdshipmentsDrilldown extends Model<BvYtdshipmentsDrilldownAttributes, BvYtdshipmentsDrilldownCreationAttributes> implements BvYtdshipmentsDrilldownAttributes {
@@ -53,7 +52,6 @@ export class BvYtdshipmentsDrilldown extends Model<BvYtdshipmentsDrilldownAttrib
   shipper_org_group?: string;
   parent_id?: string;
   lsporgid?: string;
-  shipper_reference?: string;
 
 
   static initModel(sequelize: Sequelize.Sequelize): typeof BvYtdshipmentsDrilldown {
@@ -147,10 +145,6 @@ export class BvYtdshipmentsDrilldown extends Model<BvYtdshipmentsDrilldownAttrib
     },
     lsporgid: {
       type: DataTypes.STRING(45),
-      allowNull: true
-    },
-    shipper_reference: {
-      type: DataTypes.STRING(100),
       allowNull: true
     }
   }, {

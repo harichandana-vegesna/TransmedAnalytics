@@ -25,9 +25,7 @@
           "GET_URL":"https://uat-transmedbknd.blesstrace.com/slb/shipment/im/im-publish-to-kafka",
           "PUBLISH_MSG_TYPE":"im_shipment_analytics",
           "IMCRON":"OFF",
-          "AGGCRON":"OFF",
-          "APICRONTIME":"0 * * * *",
-          "KAFKACRONTIME":"*/10  * * * *"
+          "AGGCRON":"OFF"
         }
       }
     ]

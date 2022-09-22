@@ -18,12 +18,11 @@ export interface AggLaneoverviewAttributes {
   cold_chain?: string;
   frozen?: string;
   shipper_org_group?: string;
-  shipperAccountNumber?: string;
 }
 
 export type AggLaneoverviewPk = "id";
 export type AggLaneoverviewId = AggLaneoverview[AggLaneoverviewPk];
-export type AggLaneoverviewOptionalAttributes = "id" | "origin_country" | "year_number" | "modeof_transport" | "month" | "year_month" | "lane" | "totshipments" | "totchargeable_weight" | "ontime_perfomence" | "infull_perfomence" | "rebooked" | "intact" | "cold_chain" | "frozen" | "shipper_org_group" | "shipperAccountNumber";
+export type AggLaneoverviewOptionalAttributes = "id" | "origin_country" | "year_number" | "modeof_transport" | "month" | "year_month" | "lane" | "totshipments" | "totchargeable_weight" | "ontime_perfomence" | "infull_perfomence" | "rebooked" | "intact" | "cold_chain" | "frozen" | "shipper_org_group";
 export type AggLaneoverviewCreationAttributes = Optional<AggLaneoverviewAttributes, AggLaneoverviewOptionalAttributes>;
 
 export class AggLaneoverview extends Model<AggLaneoverviewAttributes, AggLaneoverviewCreationAttributes> implements AggLaneoverviewAttributes {
@@ -43,7 +42,6 @@ export class AggLaneoverview extends Model<AggLaneoverviewAttributes, AggLaneove
   cold_chain?: string;
   frozen?: string;
   shipper_org_group?: string;
-  shipperAccountNumber?: string;
 
 
   static initModel(sequelize: Sequelize.Sequelize): typeof AggLaneoverview {
@@ -112,10 +110,6 @@ export class AggLaneoverview extends Model<AggLaneoverviewAttributes, AggLaneove
     },
     shipper_org_group: {
       type: DataTypes.STRING(100),
-      allowNull: true
-    },
-    shipperAccountNumber: {
-      type: DataTypes.STRING(50),
       allowNull: true
     }
   }, {

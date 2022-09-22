@@ -23,11 +23,7 @@
           "APP_KEY":"6150492a7dce1b08db22ad24b2767b83",
           "EMAIL_ID":"uatgsk@blesstrace.com",
           "GET_URL":"https://uat-transmedbknd.blesstrace.com/gsk/shipment/im/im-publish-to-kafka",
-          "PUBLISH_MSG_TYPE":"im_shipment_analytics, im_shipment_analytics_cost",
-          "IMCRON":"OFF",
-          "AGGCRON":"OFF",
-          "APICRONTIME":"0 * * * *",
-          "KAFKACRONTIME":"*/10  * * * *"
+          "PUBLISH_MSG_TYPE":"im_shipment_analytics, im_shipment_analytics_cost"
         }
       }
     ]

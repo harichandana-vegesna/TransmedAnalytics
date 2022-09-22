@@ -11,12 +11,11 @@ export interface AggYtdspendWeightAttributes {
   totchargeable_weight?: string;
   total_cost?: string;
   shipper_org_group?: string;
-  shipperAccountNumber?: string;
 }
 
 export type AggYtdspendWeightPk = "id";
 export type AggYtdspendWeightId = AggYtdspendWeight[AggYtdspendWeightPk];
-export type AggYtdspendWeightOptionalAttributes = "id" | "origin_country" | "year_number" | "modeof_transport" | "month" | "year_month" | "totchargeable_weight" | "total_cost" | "shipper_org_group" | "shipperAccountNumber";
+export type AggYtdspendWeightOptionalAttributes = "id" | "origin_country" | "year_number" | "modeof_transport" | "month" | "year_month" | "totchargeable_weight" | "total_cost" | "shipper_org_group";
 export type AggYtdspendWeightCreationAttributes = Optional<AggYtdspendWeightAttributes, AggYtdspendWeightOptionalAttributes>;
 
 export class AggYtdspendWeight extends Model<AggYtdspendWeightAttributes, AggYtdspendWeightCreationAttributes> implements AggYtdspendWeightAttributes {
@@ -29,7 +28,6 @@ export class AggYtdspendWeight extends Model<AggYtdspendWeightAttributes, AggYtd
   totchargeable_weight?: string;
   total_cost?: string;
   shipper_org_group?: string;
-  shipperAccountNumber?: string;
 
 
   static initModel(sequelize: Sequelize.Sequelize): typeof AggYtdspendWeight {
@@ -70,10 +68,6 @@ export class AggYtdspendWeight extends Model<AggYtdspendWeightAttributes, AggYtd
     },
     shipper_org_group: {
       type: DataTypes.STRING(100),
-      allowNull: true
-    },
-    shipperAccountNumber: {
-      type: DataTypes.STRING(50),
       allowNull: true
     }
   }, {

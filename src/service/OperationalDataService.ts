@@ -28,15 +28,13 @@ export class OperationalDataService {
                
                 whereObj['hawb'] = req;
                 let operationalData: any = await this.operationalDataRepository.get(whereObj);
-                console.log("operationalData.length", operationalData.length)
                 if(operationalData.length > 0 ){
                     statusObj['ship_tracking_num'] = req
                     statusObj['shipment_status'] = process.env.SHIPPER_STATUS
                     whereObj['shipper_org_group'] = process.env.SHIPPER_ORG_GROUP
                     let statusData: any = await this.iMShipmentAnalyticsRepository.getStatus(statusObj);
-                    console.log("statusData.length",statusData.length)
                     if(statusData.length > 0){
-                        response = new FetchResponse(new ResponseStatus(ResponseCode.SUCCESS, "Submit"), operationalData)
+                        response = new FetchResponse(new ResponseStatus(ResponseCode.SUCCESS, "NoSubmit"), operationalData)
                         return resolve(response)
                     }else{
                         response = new FetchResponse(new ResponseStatus(ResponseCode.SUCCESS, "Submit"), operationalData)
@@ -51,18 +49,16 @@ export class OperationalDataService {
                     let operationalData1: any;
                     let statusData: any = await this.iMShipmentAnalyticsRepository.getStatus(statusObj);
                     if(statusData.length > 0){
-                        response = new FetchResponse(new ResponseStatus(ResponseCode.SUCCESS, "HAWB is there"),operationalData1)
+                        response = new FetchResponse(new ResponseStatus(ResponseCode.SUCCESS, "NoSubmit"),operationalData1)
                         return resolve(response)
                     }
                     whereObj1['ship_tracking_num'] = req
                     whereObj1['shipper_org_group'] = process.env.SHIPPER_ORG_GROUP
                     let operationalData: any = await this.iMShipmentAnalyticsRepository.getHawb(whereObj1);
-                    //console.log("operationalData if its not in KPI", operationalData)
                     if(operationalData.length  > 0 ){
                         operationalData ={ "status": {
                             "code": "SUCCESS",
                             "message": "HAWB is there"
-                            // "response":operationalData
                         }}
                         return resolve(operationalData)
                     }else{
@@ -89,7 +85,7 @@ export class OperationalDataService {
                      
                     let whereObj: any = {};
                     let obj: any = {};
-                    let dateTime = new Date()
+                    
                     whereObj['hawb'] = req.hawb;
                     obj = {
                         'ship_id' : req.shipId,
@@ -136,16 +132,12 @@ export class OperationalDataService {
                         'amount_avoidance' : req.amountAvoidance,
                         'reason_avoidance' : req.reasonAvoidance,
                         'cost_currencytype' : req.costCurrencytype,
-                        'shipper_org_group':req.shipperOrgId,
-                        'updatedAt': dateTime,
+                        'shipper_org_group':req.shipperOrgId
                     }
                     if(req.flag == "create" ){  
                         createOperationalData = await this.operationalDataRepository.create(obj);
-                        await this.iMShipmentAnalyticsRepository.kpiDataUpdate(obj.hawb);
-
                     }else{
                         createOperationalData = await this.operationalDataRepository.update(whereObj,obj);
-                        await this.iMShipmentAnalyticsRepository.kpiDataUpdate(obj.hawb);
                     }
                     
                 }

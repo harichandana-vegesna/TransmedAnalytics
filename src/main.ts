@@ -97,11 +97,13 @@ class Main {
         expressApp.listen(process.env.PORT, () => {
             this.logger.log('Application Server Started');
             let cronService: CronService = DI.get(CronService)
-            var cronApis = cron.job(process.env.APICRONTIME, async () => {              
+            var cronApis = cron.job("0 * * * *", async () => {              
                 await cronService.gskCron();
                 this.logger.log('cron Execution Success');
+
+
             });
-            var nodeApis = cron.job(process.env.KAFKACRONTIME, async () => {
+            var nodeApis = cron.job("*/10  * * * *", async () => {
                 await cronService.kafkaNodeSch();
                 this.logger.log('Kafka Node Scheduler Execution Success');
             });
