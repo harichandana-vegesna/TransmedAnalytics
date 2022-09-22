@@ -1,5 +1,5 @@
 import { Transaction } from "sequelize/types";
-import { FsuDetails } from "../entity/init-models";
+import { FsuDetails } from "../entity/FsuDetails";
 import { Repository } from "./Repository";
 import { Logger } from "../../logger/Logger";
 import { DI } from "../../di/DIContainer";

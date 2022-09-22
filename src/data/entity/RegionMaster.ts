@@ -37,7 +37,7 @@ export class RegionMaster extends Model<RegionMasterAttributes, RegionMasterCrea
 
 
   static initModel(sequelize: Sequelize.Sequelize): typeof RegionMaster {
-    RegionMaster.init({
+    return RegionMaster.init({
     id: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
@@ -106,6 +106,5 @@ export class RegionMaster extends Model<RegionMasterAttributes, RegionMasterCrea
       },
     ]
   });
-  return RegionMaster;
   }
 }

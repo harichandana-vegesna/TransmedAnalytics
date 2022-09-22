@@ -2,7 +2,7 @@ import { Transaction } from "sequelize/types";
 import { Logger } from "../../logger/Logger";
 import { DI } from "../../di/DIContainer";
 import { Repository } from "./Repository";
-import { FsuMain } from "../entity/init-models";
+import { FsuMain } from "../entity/FsuMain";
 
 export class FsuMainRepository extends Repository {
 

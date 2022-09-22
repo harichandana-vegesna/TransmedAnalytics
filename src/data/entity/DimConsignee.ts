@@ -42,7 +42,7 @@ export class DimConsignee extends Model<DimConsigneeAttributes, DimConsigneeCrea
   countFact_operationalData!: Sequelize.HasManyCountAssociationsMixin;
 
   static initModel(sequelize: Sequelize.Sequelize): typeof DimConsignee {
-    DimConsignee.init({
+    return DimConsignee.init({
     id: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
@@ -81,6 +81,5 @@ export class DimConsignee extends Model<DimConsigneeAttributes, DimConsigneeCrea
       },
     ]
   });
-  return DimConsignee;
   }
 }

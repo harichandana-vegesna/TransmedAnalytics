@@ -47,6 +47,8 @@ export interface KpiDocumentAttributes {
   amount_avoidance?: string;
   reason_avoidance?: string;
   cost_currencytype?: string;
+  rebookedby_customer?: number;
+  rebookedby_dgf?: number;
   createdAt?: Date;
   updatedAt?: Date;
   shipper_org_group?: string;
@@ -54,7 +56,7 @@ export interface KpiDocumentAttributes {
 
 export type KpiDocumentPk = "id";
 export type KpiDocumentId = KpiDocument[KpiDocumentPk];
-export type KpiDocumentOptionalAttributes = "id" | "ship_id" | "hawb" | "parent_id" | "shipper_name" | "gross_ontime" | "infull" | "rebookedby" | "rebooked" | "cancelledby" | "cancelled" | "damage" | "temp_deviation" | "frozen" | "remark" | "action" | "actiondate" | "actionby" | "standardized_action" | "otifrootcauses" | "netontime" | "class" | "lane" | "rebooking" | "shipment_count" | "damage_intact" | "coldchain" | "nofreeze" | "active_status" | "reporting" | "language" | "service_reportings" | "followup_complaints" | "cost_saving" | "accuracy_document" | "pickup" | "deviation_management" | "carbon_netural" | "carbon_positive" | "carbon_calculation" | "reason_forbreach" | "cost_avoidance" | "amount_avoidance" | "reason_avoidance" | "cost_currencytype" | "createdAt" | "updatedAt" | "shipper_org_group";
+export type KpiDocumentOptionalAttributes = "id" | "ship_id" | "hawb" | "parent_id" | "shipper_name" | "gross_ontime" | "infull" | "rebookedby" | "rebooked" | "cancelledby" | "cancelled" | "damage" | "temp_deviation" | "frozen" | "remark" | "action" | "actiondate" | "actionby" | "standardized_action" | "otifrootcauses" | "netontime" | "class" | "lane" | "rebooking" | "shipment_count" | "damage_intact" | "coldchain" | "nofreeze" | "active_status" | "reporting" | "language" | "service_reportings" | "followup_complaints" | "cost_saving" | "accuracy_document" | "pickup" | "deviation_management" | "carbon_netural" | "carbon_positive" | "carbon_calculation" | "reason_forbreach" | "cost_avoidance" | "amount_avoidance" | "reason_avoidance" | "cost_currencytype" | "rebookedby_customer" | "rebookedby_dgf" | "createdAt" | "updatedAt" | "shipper_org_group";
 export type KpiDocumentCreationAttributes = Optional<KpiDocumentAttributes, KpiDocumentOptionalAttributes>;
 
 export class KpiDocument extends Model<KpiDocumentAttributes, KpiDocumentCreationAttributes> implements KpiDocumentAttributes {
@@ -103,13 +105,15 @@ export class KpiDocument extends Model<KpiDocumentAttributes, KpiDocumentCreatio
   amount_avoidance?: string;
   reason_avoidance?: string;
   cost_currencytype?: string;
+  rebookedby_customer?: number;
+  rebookedby_dgf?: number;
   createdAt?: Date;
   updatedAt?: Date;
   shipper_org_group?: string;
 
 
   static initModel(sequelize: Sequelize.Sequelize): typeof KpiDocument {
-    KpiDocument.init({
+    return KpiDocument.init({
     id: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
@@ -294,6 +298,14 @@ export class KpiDocument extends Model<KpiDocumentAttributes, KpiDocumentCreatio
       type: DataTypes.STRING(45),
       allowNull: true
     },
+    rebookedby_customer: {
+      type: DataTypes.INTEGER,
+      allowNull: true
+    },
+    rebookedby_dgf: {
+      type: DataTypes.INTEGER,
+      allowNull: true
+    },
     shipper_org_group: {
       type: DataTypes.STRING(100),
       allowNull: true
@@ -313,6 +325,5 @@ export class KpiDocument extends Model<KpiDocumentAttributes, KpiDocumentCreatio
       },
     ]
   });
-  return KpiDocument;
   }
 }

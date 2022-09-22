@@ -45,7 +45,7 @@ export class AggIrregularityremarks extends Model<AggIrregularityremarksAttribut
 
 
   static initModel(sequelize: Sequelize.Sequelize): typeof AggIrregularityremarks {
-    AggIrregularityremarks.init({
+    return AggIrregularityremarks.init({
     id: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
@@ -141,6 +141,5 @@ export class AggIrregularityremarks extends Model<AggIrregularityremarksAttribut
       },
     ]
   });
-  return AggIrregularityremarks;
   }
 }

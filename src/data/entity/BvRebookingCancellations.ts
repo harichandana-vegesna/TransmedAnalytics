@@ -53,7 +53,7 @@ export class BvRebookingCancellations extends Model<BvRebookingCancellationsAttr
 
 
   static initModel(sequelize: Sequelize.Sequelize): typeof BvRebookingCancellations {
-    BvRebookingCancellations.init({
+    return BvRebookingCancellations.init({
     month: {
       type: DataTypes.STRING(45),
       allowNull: true
@@ -147,6 +147,5 @@ export class BvRebookingCancellations extends Model<BvRebookingCancellationsAttr
     tableName: 'BV_rebooking_cancellations',
     timestamps: false
   });
-  return BvRebookingCancellations;
   }
 }

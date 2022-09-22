@@ -17,7 +17,7 @@ export class LatestId extends Model<LatestIdAttributes, LatestIdCreationAttribut
 
 
   static initModel(sequelize: Sequelize.Sequelize): typeof LatestId {
-    LatestId.init({
+    return LatestId.init({
     parent_id: {
       type: DataTypes.INTEGER,
       allowNull: true
@@ -35,6 +35,5 @@ export class LatestId extends Model<LatestIdAttributes, LatestIdCreationAttribut
     tableName: 'latest_id',
     timestamps: false
   });
-  return LatestId;
   }
 }

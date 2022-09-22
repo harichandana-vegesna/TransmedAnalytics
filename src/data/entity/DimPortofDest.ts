@@ -44,7 +44,7 @@ export class DimPortofDest extends Model<DimPortofDestAttributes, DimPortofDestC
   countFact_operationalData!: Sequelize.HasManyCountAssociationsMixin;
 
   static initModel(sequelize: Sequelize.Sequelize): typeof DimPortofDest {
-    DimPortofDest.init({
+    return DimPortofDest.init({
     id: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
@@ -87,6 +87,5 @@ export class DimPortofDest extends Model<DimPortofDestAttributes, DimPortofDestC
       },
     ]
   });
-  return DimPortofDest;
   }
 }

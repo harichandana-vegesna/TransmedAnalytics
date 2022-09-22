@@ -261,7 +261,7 @@ export class BvNewshipmentetadeviationIntransit extends Model<BvNewshipmentetade
 
 
   static initModel(sequelize: Sequelize.Sequelize): typeof BvNewshipmentetadeviationIntransit {
-    BvNewshipmentetadeviationIntransit.init({
+    return BvNewshipmentetadeviationIntransit.init({
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -772,6 +772,5 @@ export class BvNewshipmentetadeviationIntransit extends Model<BvNewshipmentetade
     tableName: 'BV_newshipmentetadeviation_intransit',
     timestamps: false
   });
-  return BvNewshipmentetadeviationIntransit;
   }
 }

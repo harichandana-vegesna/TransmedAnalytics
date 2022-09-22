@@ -40,7 +40,7 @@ export class DimAirline extends Model<DimAirlineAttributes, DimAirlineCreationAt
   countFact_operationalData!: Sequelize.HasManyCountAssociationsMixin;
 
   static initModel(sequelize: Sequelize.Sequelize): typeof DimAirline {
-    DimAirline.init({
+    return DimAirline.init({
     id: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
@@ -75,6 +75,5 @@ export class DimAirline extends Model<DimAirlineAttributes, DimAirlineCreationAt
       },
     ]
   });
-  return DimAirline;
   }
 }

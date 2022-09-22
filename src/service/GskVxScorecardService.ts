@@ -40,7 +40,8 @@ export class GskVxScorecardService {
                 whereObj['shipper_org_group'] = shipperOrgId
                 let scorecardData: any
                 if (originCountry !== '') {
-                    whereObj['origin_country'] = originCountry
+                    //whereObj['origin_country'] = originCountry
+                    whereObj['shipment_origin'] = originCountry
                     scorecardData = await this.gskVxScorecardRepository.get(whereObj, sortArrayOfArrays);
 
                 }else{
@@ -85,6 +86,40 @@ export class GskVxScorecardService {
                     obj['avgDeviationManagement'] = (avgDeviationManagement / scorecardData.length).toFixed(2)
                 }
                 return resolve({ "result": scorecardData, "totals": obj, "TotalCount": totalGskRecords })
+            } catch (e) {
+                reject(e)
+            }
+        })
+    }
+
+    async getOriginListData(monthNumber?: any, year?: any,shipperAccountNumber?:any): Promise<any> {
+        let whereObj: any = {};
+        let listOriginCountries: any
+        return new Promise(async (resolve, reject) => {
+            try {
+                let sortArrayOfArrays: any = [];
+                //Building a sort Object
+                // sortArrayOfArrays = this.queryBuilder.buildSortObj(sort);
+                               
+                if (monthNumber !== '') {
+                    whereObj['month'] = monthNumber
+                }
+                if (year !== '') {
+                    whereObj['year_number'] = year
+                }
+                if (shipperAccountNumber !== '') {
+                    shipperAccountNumber = shipperAccountNumber.split(",")
+                    whereObj['shipperAccountNumber'] = shipperAccountNumber
+                }
+                
+               
+
+                listOriginCountries = await this.gskVxScorecardRepository.getListOfOriginByMonth(whereObj, sortArrayOfArrays);
+
+                
+                this.logger.log("listOriginCountries",listOriginCountries)
+                
+                return resolve(listOriginCountries)
             } catch (e) {
                 reject(e)
             }

@@ -29,7 +29,7 @@ export class ShipmentDeviated extends Model<ShipmentDeviatedAttributes, Shipment
 
 
   static initModel(sequelize: Sequelize.Sequelize): typeof ShipmentDeviated {
-    ShipmentDeviated.init({
+    return ShipmentDeviated.init({
     id: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
@@ -92,6 +92,5 @@ export class ShipmentDeviated extends Model<ShipmentDeviatedAttributes, Shipment
       },
     ]
   });
-  return ShipmentDeviated;
   }
 }

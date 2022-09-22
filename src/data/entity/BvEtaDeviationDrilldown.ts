@@ -391,7 +391,7 @@ export class BvEtaDeviationDrilldown extends Model<BvEtaDeviationDrilldownAttrib
 
 
   static initModel(sequelize: Sequelize.Sequelize): typeof BvEtaDeviationDrilldown {
-    BvEtaDeviationDrilldown.init({
+    return BvEtaDeviationDrilldown.init({
     pickupAddress2: {
       type: DataTypes.STRING(100),
       allowNull: true
@@ -1164,13 +1164,13 @@ export class BvEtaDeviationDrilldown extends Model<BvEtaDeviationDrilldownAttrib
     },
     etacount: {
       type: DataTypes.BIGINT,
-      allowNull: true
+      allowNull: true,
+      defaultValue: 0
     }
   }, {
     sequelize,
     tableName: 'BV_eta_deviation_drilldown',
     timestamps: true
   });
-  return BvEtaDeviationDrilldown;
   }
 }

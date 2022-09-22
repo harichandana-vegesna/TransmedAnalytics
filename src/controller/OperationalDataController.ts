@@ -19,7 +19,34 @@ export class OperationalDataController implements Controller {
     getRouter(): Router {
         const router = Router();
 
-        router.get('/getTransactions/:arg1', async (req: Request, res: Response, next: NextFunction) => {
+        router.get('/getListOfHawb', this.verifyJwtTokenService.verifyToken, async (req: Request, res: Response, next: NextFunction) => {
+            try {
+
+                let response: any;
+                let dataResult: any;
+                let month = req.param('month');
+                let year = req.param('year');
+                let hawb = req.params.arg1
+                if (month === undefined) {
+                    month = ''
+                } else {
+                    month = req.param('month');
+                }
+                if (year === undefined) {
+                    year = ''
+                } else {
+                    year = req.param('year');
+                } 
+                dataResult = await this.operationalDataService.getListOfHawbsData(month, year)
+                res.json(dataResult);
+            } catch (error) {
+                this.logger.log("error", error)
+                next(error);
+
+            }
+        });
+
+        router.get('/getTransactions/:arg1',  async (req: Request, res: Response, next: NextFunction) => {
             try {
 
                 let response: any;
@@ -34,7 +61,7 @@ export class OperationalDataController implements Controller {
             }
         });
 
-        router.post('/enrichTransaction', async (req: Request, res: Response, next: NextFunction) => {
+        router.post('/enrichTransaction',  async (req: Request, res: Response, next: NextFunction) => {
             try {
 
                 let response: any;
@@ -42,7 +69,7 @@ export class OperationalDataController implements Controller {
                 this.logger.log("req.body",req.body)
    
                 createResult = await this.operationalDataService.createOperationData(req.body)
-                response = new FetchResponse(new ResponseStatus(ResponseCode.SUCCESS, "Created Successfully"), createResult)
+                response = new FetchResponse(new ResponseStatus(ResponseCode.SUCCESS, "Saved Successfully"), createResult)
 
                 res.json(response);
 
@@ -53,7 +80,7 @@ export class OperationalDataController implements Controller {
             }
         });
 
-        router.get('/getOtifRootCauses', async (req: Request, res: Response, next: NextFunction) => {
+        router.get('/getOtifRootCauses', this.verifyJwtTokenService.verifyToken, async (req: Request, res: Response, next: NextFunction) => {
             try {
 
                 let response: any;

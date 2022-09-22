@@ -49,7 +49,7 @@ export class AggRebookingsCancellations extends Model<AggRebookingsCancellations
 
 
   static initModel(sequelize: Sequelize.Sequelize): typeof AggRebookingsCancellations {
-    AggRebookingsCancellations.init({
+    return AggRebookingsCancellations.init({
     id: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
@@ -131,6 +131,5 @@ export class AggRebookingsCancellations extends Model<AggRebookingsCancellations
       },
     ]
   });
-  return AggRebookingsCancellations;
   }
 }

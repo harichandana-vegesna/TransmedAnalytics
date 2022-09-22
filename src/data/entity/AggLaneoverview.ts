@@ -47,7 +47,7 @@ export class AggLaneoverview extends Model<AggLaneoverviewAttributes, AggLaneove
 
 
   static initModel(sequelize: Sequelize.Sequelize): typeof AggLaneoverview {
-    AggLaneoverview.init({
+    return AggLaneoverview.init({
     id: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
@@ -175,6 +175,5 @@ export class AggLaneoverview extends Model<AggLaneoverviewAttributes, AggLaneove
       },
     ]
   });
-  return AggLaneoverview;
   }
 }

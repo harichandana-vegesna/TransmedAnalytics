@@ -25,7 +25,7 @@ export class RegionDetailsCost extends Model<RegionDetailsCostAttributes, Region
 
 
   static initModel(sequelize: Sequelize.Sequelize): typeof RegionDetailsCost {
-    RegionDetailsCost.init({
+    return RegionDetailsCost.init({
     parent_id: {
       type: DataTypes.INTEGER,
       allowNull: true
@@ -59,6 +59,5 @@ export class RegionDetailsCost extends Model<RegionDetailsCostAttributes, Region
     tableName: 'region_details_cost',
     timestamps: false
   });
-  return RegionDetailsCost;
   }
 }

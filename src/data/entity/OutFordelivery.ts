@@ -15,7 +15,7 @@ export class OutFordelivery extends Model<OutFordeliveryAttributes, OutFordelive
 
 
   static initModel(sequelize: Sequelize.Sequelize): typeof OutFordelivery {
-    OutFordelivery.init({
+    return OutFordelivery.init({
     parent_id: {
       type: DataTypes.INTEGER,
       allowNull: true
@@ -29,6 +29,5 @@ export class OutFordelivery extends Model<OutFordeliveryAttributes, OutFordelive
     tableName: 'out_fordelivery',
     timestamps: false
   });
-  return OutFordelivery;
   }
 }

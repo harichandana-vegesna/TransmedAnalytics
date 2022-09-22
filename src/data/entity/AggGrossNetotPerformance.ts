@@ -43,7 +43,7 @@ export class AggGrossNetotPerformance extends Model<AggGrossNetotPerformanceAttr
 
 
   static initModel(sequelize: Sequelize.Sequelize): typeof AggGrossNetotPerformance {
-    AggGrossNetotPerformance.init({
+    return AggGrossNetotPerformance.init({
     id: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
@@ -143,6 +143,5 @@ export class AggGrossNetotPerformance extends Model<AggGrossNetotPerformanceAttr
       },
     ]
   });
-  return AggGrossNetotPerformance;
   }
 }

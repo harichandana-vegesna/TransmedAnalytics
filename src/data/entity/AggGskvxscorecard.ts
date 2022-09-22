@@ -67,7 +67,7 @@ export class AggGskvxscorecard extends Model<AggGskvxscorecardAttributes, AggGsk
 
 
   static initModel(sequelize: Sequelize.Sequelize): typeof AggGskvxscorecard {
-    AggGskvxscorecard.init({
+    return AggGskvxscorecard.init({
     id: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
@@ -230,6 +230,5 @@ export class AggGskvxscorecard extends Model<AggGskvxscorecardAttributes, AggGsk
       },
     ]
   });
-  return AggGskvxscorecard;
   }
 }

@@ -53,7 +53,7 @@ export class AggYtdshipmentsWeight extends Model<AggYtdshipmentsWeightAttributes
 
 
   static initModel(sequelize: Sequelize.Sequelize): typeof AggYtdshipmentsWeight {
-    AggYtdshipmentsWeight.init({
+    return AggYtdshipmentsWeight.init({
     id: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
@@ -165,6 +165,5 @@ export class AggYtdshipmentsWeight extends Model<AggYtdshipmentsWeightAttributes
       },
     ]
   });
-  return AggYtdshipmentsWeight;
   }
 }

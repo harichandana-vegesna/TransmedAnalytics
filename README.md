@@ -64,5 +64,4 @@ pm2 update
 
 cmd for generating entities:
 ==============================
-sequelize-auto -d analytics -h 35.154.225.2 -u analytics -x Rvdas@2021 -z -f -o ./src/data/entity -l 
-ts --cm p -v -e mysql --cf p
+sequelize-auto -d analytics -h 35.154.225.2 -u analytics -x Rvdas@2021 -z -f -o ./src/data/entity -l ts --cm p -v -e mysql --cf p

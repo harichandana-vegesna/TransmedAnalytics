@@ -25,7 +25,7 @@ export class RegionDetails extends Model<RegionDetailsAttributes, RegionDetailsC
 
 
   static initModel(sequelize: Sequelize.Sequelize): typeof RegionDetails {
-    RegionDetails.init({
+    return RegionDetails.init({
     parent_id: {
       type: DataTypes.INTEGER,
       allowNull: true
@@ -59,6 +59,5 @@ export class RegionDetails extends Model<RegionDetailsAttributes, RegionDetailsC
     tableName: 'region_details',
     timestamps: false
   });
-  return RegionDetails;
   }
 }

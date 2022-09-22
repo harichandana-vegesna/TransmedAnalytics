@@ -15,7 +15,7 @@ export class CustomImport extends Model<CustomImportAttributes, CustomImportCrea
 
 
   static initModel(sequelize: Sequelize.Sequelize): typeof CustomImport {
-    CustomImport.init({
+    return CustomImport.init({
     parent_id: {
       type: DataTypes.INTEGER,
       allowNull: true
@@ -29,6 +29,5 @@ export class CustomImport extends Model<CustomImportAttributes, CustomImportCrea
     tableName: 'custom_import',
     timestamps: false
   });
-  return CustomImport;
   }
 }

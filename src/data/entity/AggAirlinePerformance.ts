@@ -63,7 +63,7 @@ export class AggAirlinePerformance extends Model<AggAirlinePerformanceAttributes
 
 
   static initModel(sequelize: Sequelize.Sequelize): typeof AggAirlinePerformance {
-    AggAirlinePerformance.init({
+    return AggAirlinePerformance.init({
     id: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
@@ -225,6 +225,5 @@ export class AggAirlinePerformance extends Model<AggAirlinePerformanceAttributes
       },
     ]
   });
-  return AggAirlinePerformance;
   }
 }

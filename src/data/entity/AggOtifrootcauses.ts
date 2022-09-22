@@ -39,7 +39,7 @@ export class AggOtifrootcauses extends Model<AggOtifrootcausesAttributes, AggOti
 
 
   static initModel(sequelize: Sequelize.Sequelize): typeof AggOtifrootcauses {
-    AggOtifrootcauses.init({
+    return AggOtifrootcauses.init({
     id: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
@@ -116,6 +116,5 @@ export class AggOtifrootcauses extends Model<AggOtifrootcausesAttributes, AggOti
       },
     ]
   });
-  return AggOtifrootcauses;
   }
 }

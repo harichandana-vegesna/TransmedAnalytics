@@ -15,7 +15,7 @@ export class BatchtimeUpdate extends Model<BatchtimeUpdateAttributes, BatchtimeU
 
 
   static initModel(sequelize: Sequelize.Sequelize): typeof BatchtimeUpdate {
-    BatchtimeUpdate.init({
+    return BatchtimeUpdate.init({
     shipper_org_group: {
       type: DataTypes.STRING(100),
       allowNull: true
@@ -29,6 +29,5 @@ export class BatchtimeUpdate extends Model<BatchtimeUpdateAttributes, BatchtimeU
     tableName: 'batchtime_update',
     timestamps: false
   });
-  return BatchtimeUpdate;
   }
 }

@@ -237,7 +237,7 @@ export class FactOperationalData extends Model<FactOperationalDataAttributes, Fa
   createDimtime!: Sequelize.BelongsToCreateAssociationMixin<DimTime>;
 
   static initModel(sequelize: Sequelize.Sequelize): typeof FactOperationalData {
-    FactOperationalData.init({
+    return FactOperationalData.init({
     id: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
@@ -685,6 +685,5 @@ export class FactOperationalData extends Model<FactOperationalDataAttributes, Fa
       },
     ]
   });
-  return FactOperationalData;
   }
 }

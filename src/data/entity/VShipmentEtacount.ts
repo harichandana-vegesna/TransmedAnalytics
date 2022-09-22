@@ -2,7 +2,7 @@ import * as Sequelize from 'sequelize';
 import { DataTypes, Model, Optional } from 'sequelize';
 
 export interface VShipmentEtacountAttributes {
-  maxid?: number;
+  maxid: string;
   hawb?: string;
   parent_id?: number;
   event_code?: string;
@@ -10,7 +10,7 @@ export interface VShipmentEtacountAttributes {
   event_type?: string;
   shipment_eta?: Date;
   event_date?: string;
-  shipment_status?: string;
+  shipment_status: string;
   lspOrgId?: string;
   shipper_org_group?: string;
   shipperAccountNumber?: string;
@@ -20,7 +20,7 @@ export type VShipmentEtacountOptionalAttributes = "maxid" | "hawb" | "parent_id"
 export type VShipmentEtacountCreationAttributes = Optional<VShipmentEtacountAttributes, VShipmentEtacountOptionalAttributes>;
 
 export class VShipmentEtacount extends Model<VShipmentEtacountAttributes, VShipmentEtacountCreationAttributes> implements VShipmentEtacountAttributes {
-  maxid?: number;
+  maxid!: string;
   hawb?: string;
   parent_id?: number;
   event_code?: string;
@@ -28,17 +28,18 @@ export class VShipmentEtacount extends Model<VShipmentEtacountAttributes, VShipm
   event_type?: string;
   shipment_eta?: Date;
   event_date?: string;
-  shipment_status?: string;
+  shipment_status!: string;
   lspOrgId?: string;
   shipper_org_group?: string;
   shipperAccountNumber?: string;
 
 
   static initModel(sequelize: Sequelize.Sequelize): typeof VShipmentEtacount {
-    VShipmentEtacount.init({
+    return VShipmentEtacount.init({
     maxid: {
-      type: DataTypes.INTEGER,
-      allowNull: true
+      type: DataTypes.CHAR(0),
+      allowNull: false,
+      defaultValue: ""
     },
     hawb: {
       type: DataTypes.STRING(100),
@@ -69,8 +70,9 @@ export class VShipmentEtacount extends Model<VShipmentEtacountAttributes, VShipm
       allowNull: true
     },
     shipment_status: {
-      type: DataTypes.STRING(100),
-      allowNull: true
+      type: DataTypes.STRING(9),
+      allowNull: false,
+      defaultValue: ""
     },
     lspOrgId: {
       type: DataTypes.STRING(100),
@@ -89,6 +91,5 @@ export class VShipmentEtacount extends Model<VShipmentEtacountAttributes, VShipm
     tableName: 'V_shipment_etacount',
     timestamps: false
   });
-  return VShipmentEtacount;
   }
 }

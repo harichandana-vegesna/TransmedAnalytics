@@ -42,7 +42,7 @@ export class DimShipper extends Model<DimShipperAttributes, DimShipperCreationAt
   countFact_operationalData!: Sequelize.HasManyCountAssociationsMixin;
 
   static initModel(sequelize: Sequelize.Sequelize): typeof DimShipper {
-    DimShipper.init({
+    return DimShipper.init({
     id: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
@@ -81,6 +81,5 @@ export class DimShipper extends Model<DimShipperAttributes, DimShipperCreationAt
       },
     ]
   });
-  return DimShipper;
   }
 }

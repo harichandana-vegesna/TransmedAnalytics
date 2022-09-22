@@ -17,7 +17,7 @@ export class OtifrootcausesMaster extends Model<OtifrootcausesMasterAttributes, 
 
 
   static initModel(sequelize: Sequelize.Sequelize): typeof OtifrootcausesMaster {
-    OtifrootcausesMaster.init({
+    return OtifrootcausesMaster.init({
     id: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
@@ -43,6 +43,5 @@ export class OtifrootcausesMaster extends Model<OtifrootcausesMasterAttributes, 
       },
     ]
   });
-  return OtifrootcausesMaster;
   }
 }

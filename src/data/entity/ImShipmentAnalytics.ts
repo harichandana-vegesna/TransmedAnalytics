@@ -353,7 +353,7 @@ export class ImShipmentAnalytics extends Model<ImShipmentAnalyticsAttributes, Im
 
 
   static initModel(sequelize: Sequelize.Sequelize): typeof ImShipmentAnalytics {
-    ImShipmentAnalytics.init({
+    return ImShipmentAnalytics.init({
     id: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
@@ -1185,6 +1185,5 @@ export class ImShipmentAnalytics extends Model<ImShipmentAnalyticsAttributes, Im
       },
     ]
   });
-  return ImShipmentAnalytics;
   }
 }

@@ -17,7 +17,7 @@ export class LatestImshipmentId extends Model<LatestImshipmentIdAttributes, Late
 
 
   static initModel(sequelize: Sequelize.Sequelize): typeof LatestImshipmentId {
-    LatestImshipmentId.init({
+    return LatestImshipmentId.init({
     parent_id: {
       type: DataTypes.INTEGER,
       allowNull: true
@@ -35,6 +35,5 @@ export class LatestImshipmentId extends Model<LatestImshipmentIdAttributes, Late
     tableName: 'latest_imshipment_id',
     timestamps: false
   });
-  return LatestImshipmentId;
   }
 }

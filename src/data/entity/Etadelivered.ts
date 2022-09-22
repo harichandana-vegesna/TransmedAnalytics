@@ -25,7 +25,7 @@ export class Etadelivered extends Model<EtadeliveredAttributes, EtadeliveredCrea
 
 
   static initModel(sequelize: Sequelize.Sequelize): typeof Etadelivered {
-    Etadelivered.init({
+    return Etadelivered.init({
     maxid: {
       type: DataTypes.INTEGER,
       allowNull: true
@@ -59,6 +59,5 @@ export class Etadelivered extends Model<EtadeliveredAttributes, EtadeliveredCrea
     tableName: 'etadelivered',
     timestamps: false
   });
-  return Etadelivered;
   }
 }

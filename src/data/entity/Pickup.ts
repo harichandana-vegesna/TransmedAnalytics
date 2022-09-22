@@ -15,7 +15,7 @@ export class Pickup extends Model<PickupAttributes, PickupCreationAttributes> im
 
 
   static initModel(sequelize: Sequelize.Sequelize): typeof Pickup {
-    Pickup.init({
+    return Pickup.init({
     parent_id: {
       type: DataTypes.INTEGER,
       allowNull: true
@@ -29,6 +29,5 @@ export class Pickup extends Model<PickupAttributes, PickupCreationAttributes> im
     tableName: 'pickup',
     timestamps: false
   });
-  return Pickup;
   }
 }

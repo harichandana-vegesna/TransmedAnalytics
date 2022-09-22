@@ -15,7 +15,7 @@ export class Depart extends Model<DepartAttributes, DepartCreationAttributes> im
 
 
   static initModel(sequelize: Sequelize.Sequelize): typeof Depart {
-    Depart.init({
+    return Depart.init({
     parent_id: {
       type: DataTypes.INTEGER,
       allowNull: true
@@ -29,6 +29,5 @@ export class Depart extends Model<DepartAttributes, DepartCreationAttributes> im
     tableName: 'depart',
     timestamps: false
   });
-  return Depart;
   }
 }

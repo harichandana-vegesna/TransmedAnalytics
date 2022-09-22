@@ -43,7 +43,7 @@ export class AggCostanalysisShipments extends Model<AggCostanalysisShipmentsAttr
 
 
   static initModel(sequelize: Sequelize.Sequelize): typeof AggCostanalysisShipments {
-    AggCostanalysisShipments.init({
+    return AggCostanalysisShipments.init({
     origin_code: {
       type: DataTypes.STRING(100),
       allowNull: true
@@ -115,6 +115,5 @@ export class AggCostanalysisShipments extends Model<AggCostanalysisShipmentsAttr
     tableName: 'agg_costanalysis_shipments',
     timestamps: false
   });
-  return AggCostanalysisShipments;
   }
 }

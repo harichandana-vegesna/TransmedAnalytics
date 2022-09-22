@@ -1,186 +1,171 @@
 import type { Sequelize } from "sequelize";
-import { AppUsers } from "./AppUsers";
+import { AppUsers as _AppUsers } from "./AppUsers";
 import type { AppUsersAttributes, AppUsersCreationAttributes } from "./AppUsers";
-import { BvAggCostanalysis } from "./BvAggCostanalysis";
+import { BvAggCostanalysis as _BvAggCostanalysis } from "./BvAggCostanalysis";
 import type { BvAggCostanalysisAttributes, BvAggCostanalysisCreationAttributes } from "./BvAggCostanalysis";
-import { BvEtaDeviationDrilldown } from "./BvEtaDeviationDrilldown";
+import { BvEtaDeviationDrilldown as _BvEtaDeviationDrilldown } from "./BvEtaDeviationDrilldown";
 import type { BvEtaDeviationDrilldownAttributes, BvEtaDeviationDrilldownCreationAttributes } from "./BvEtaDeviationDrilldown";
-import { BvNewshipmentetadeviation } from "./BvNewshipmentetadeviation";
+import { BvNewshipmentetadeviation as _BvNewshipmentetadeviation } from "./BvNewshipmentetadeviation";
 import type { BvNewshipmentetadeviationAttributes, BvNewshipmentetadeviationCreationAttributes } from "./BvNewshipmentetadeviation";
-import { BvNewshipmentetadeviationBk180222 } from "./BvNewshipmentetadeviationBk180222";
-import type { BvNewshipmentetadeviationBk180222Attributes, BvNewshipmentetadeviationBk180222CreationAttributes } from "./BvNewshipmentetadeviationBk180222";
-import { BvNewshipmentetadeviationDelivered } from "./BvNewshipmentetadeviationDelivered";
+import { BvNewshipmentetadeviationDelivered as _BvNewshipmentetadeviationDelivered } from "./BvNewshipmentetadeviationDelivered";
 import type { BvNewshipmentetadeviationDeliveredAttributes, BvNewshipmentetadeviationDeliveredCreationAttributes } from "./BvNewshipmentetadeviationDelivered";
-import { BvNewshipmentetadeviationIntransit } from "./BvNewshipmentetadeviationIntransit";
+import { BvNewshipmentetadeviationIntransit as _BvNewshipmentetadeviationIntransit } from "./BvNewshipmentetadeviationIntransit";
 import type { BvNewshipmentetadeviationIntransitAttributes, BvNewshipmentetadeviationIntransitCreationAttributes } from "./BvNewshipmentetadeviationIntransit";
-import { BvRebookingCancellations } from "./BvRebookingCancellations";
+import { BvRebookingCancellations as _BvRebookingCancellations } from "./BvRebookingCancellations";
 import type { BvRebookingCancellationsAttributes, BvRebookingCancellationsCreationAttributes } from "./BvRebookingCancellations";
-import { BvShipmentEtaDeviation } from "./BvShipmentEtaDeviation";
+import { BvShipmentEtaDeviation as _BvShipmentEtaDeviation } from "./BvShipmentEtaDeviation";
 import type { BvShipmentEtaDeviationAttributes, BvShipmentEtaDeviationCreationAttributes } from "./BvShipmentEtaDeviation";
-import { BvShipmentEtaDeviationNodate } from "./BvShipmentEtaDeviationNodate";
+import { BvShipmentEtaDeviationNodate as _BvShipmentEtaDeviationNodate } from "./BvShipmentEtaDeviationNodate";
 import type { BvShipmentEtaDeviationNodateAttributes, BvShipmentEtaDeviationNodateCreationAttributes } from "./BvShipmentEtaDeviationNodate";
-import { BvYtdshipmentsDrilldown } from "./BvYtdshipmentsDrilldown";
+import { BvYtdshipmentsDrilldown as _BvYtdshipmentsDrilldown } from "./BvYtdshipmentsDrilldown";
 import type { BvYtdshipmentsDrilldownAttributes, BvYtdshipmentsDrilldownCreationAttributes } from "./BvYtdshipmentsDrilldown";
-import { FsuDetails } from "./FsuDetails";
-import type { FsuDetailsAttributes, FsuDetailsCreationAttributes } from "./FsuDetails";
-import { FsuMain } from "./FsuMain";
-import type { FsuMainAttributes, FsuMainCreationAttributes } from "./FsuMain";
-import { KpiDocument } from "./KpiDocument";
+import { KpiDocument as _KpiDocument } from "./KpiDocument";
 import type { KpiDocumentAttributes, KpiDocumentCreationAttributes } from "./KpiDocument";
-import { RegionMaster } from "./RegionMaster";
+import { RegionMaster as _RegionMaster } from "./RegionMaster";
 import type { RegionMasterAttributes, RegionMasterCreationAttributes } from "./RegionMaster";
-import { RegionMasterBk1 } from "./RegionMasterBk1";
-import type { RegionMasterBk1Attributes, RegionMasterBk1CreationAttributes } from "./RegionMasterBk1";
-import { RegionMasterProdslgBk210222 } from "./RegionMasterProdslgBk210222";
-import type { RegionMasterProdslgBk210222Attributes, RegionMasterProdslgBk210222CreationAttributes } from "./RegionMasterProdslgBk210222";
-import { VShipmentEtacount } from "./VShipmentEtacount";
+import { VShipmentEtacount as _VShipmentEtacount } from "./VShipmentEtacount";
 import type { VShipmentEtacountAttributes, VShipmentEtacountCreationAttributes } from "./VShipmentEtacount";
-import { AggAirlinePerformance } from "./AggAirlinePerformance";
+import { AggAirlinePerformance as _AggAirlinePerformance } from "./AggAirlinePerformance";
 import type { AggAirlinePerformanceAttributes, AggAirlinePerformanceCreationAttributes } from "./AggAirlinePerformance";
-import { AggCostanalysisShipments } from "./AggCostanalysisShipments";
+import { AggCostanalysisShipments as _AggCostanalysisShipments } from "./AggCostanalysisShipments";
 import type { AggCostanalysisShipmentsAttributes, AggCostanalysisShipmentsCreationAttributes } from "./AggCostanalysisShipments";
-import { AggCostgrpshipments } from "./AggCostgrpshipments";
+import { AggCostgrpshipments as _AggCostgrpshipments } from "./AggCostgrpshipments";
 import type { AggCostgrpshipmentsAttributes, AggCostgrpshipmentsCreationAttributes } from "./AggCostgrpshipments";
-import { AggGrossNetotPerformance } from "./AggGrossNetotPerformance";
+import { AggGrossNetotPerformance as _AggGrossNetotPerformance } from "./AggGrossNetotPerformance";
 import type { AggGrossNetotPerformanceAttributes, AggGrossNetotPerformanceCreationAttributes } from "./AggGrossNetotPerformance";
-import { AggGskvxscorecard } from "./AggGskvxscorecard";
+import { AggGskvxscorecard as _AggGskvxscorecard } from "./AggGskvxscorecard";
 import type { AggGskvxscorecardAttributes, AggGskvxscorecardCreationAttributes } from "./AggGskvxscorecard";
-import { AggIrregularityremarks } from "./AggIrregularityremarks";
+import { AggIrregularityremarks as _AggIrregularityremarks } from "./AggIrregularityremarks";
 import type { AggIrregularityremarksAttributes, AggIrregularityremarksCreationAttributes } from "./AggIrregularityremarks";
-import { AggLaneoverview } from "./AggLaneoverview";
+import { AggLaneoverview as _AggLaneoverview } from "./AggLaneoverview";
 import type { AggLaneoverviewAttributes, AggLaneoverviewCreationAttributes } from "./AggLaneoverview";
-import { AggOtifrootcauses } from "./AggOtifrootcauses";
+import { AggOtifrootcauses as _AggOtifrootcauses } from "./AggOtifrootcauses";
 import type { AggOtifrootcausesAttributes, AggOtifrootcausesCreationAttributes } from "./AggOtifrootcauses";
-import { AggQtyoverview } from "./AggQtyoverview";
+import { AggQtyoverview as _AggQtyoverview } from "./AggQtyoverview";
 import type { AggQtyoverviewAttributes, AggQtyoverviewCreationAttributes } from "./AggQtyoverview";
-import { AggRebookingsCancellations } from "./AggRebookingsCancellations";
+import { AggRebookingsCancellations as _AggRebookingsCancellations } from "./AggRebookingsCancellations";
 import type { AggRebookingsCancellationsAttributes, AggRebookingsCancellationsCreationAttributes } from "./AggRebookingsCancellations";
-import { AggYtdshipmentsWeight } from "./AggYtdshipmentsWeight";
+import { AggYtdshipmentsWeight as _AggYtdshipmentsWeight } from "./AggYtdshipmentsWeight";
 import type { AggYtdshipmentsWeightAttributes, AggYtdshipmentsWeightCreationAttributes } from "./AggYtdshipmentsWeight";
-import { AggYtdspendWeight } from "./AggYtdspendWeight";
+import { AggYtdspendWeight as _AggYtdspendWeight } from "./AggYtdspendWeight";
 import type { AggYtdspendWeightAttributes, AggYtdspendWeightCreationAttributes } from "./AggYtdspendWeight";
-import { BatchtimeUpdate } from "./BatchtimeUpdate";
+import { BatchtimeUpdate as _BatchtimeUpdate } from "./BatchtimeUpdate";
 import type { BatchtimeUpdateAttributes, BatchtimeUpdateCreationAttributes } from "./BatchtimeUpdate";
-import { CustomImport } from "./CustomImport";
+import { CustomImport as _CustomImport } from "./CustomImport";
 import type { CustomImportAttributes, CustomImportCreationAttributes } from "./CustomImport";
-import { Delivered } from "./Delivered";
+import { Delivered as _Delivered } from "./Delivered";
 import type { DeliveredAttributes, DeliveredCreationAttributes } from "./Delivered";
-import { Depart } from "./Depart";
+import { Depart as _Depart } from "./Depart";
 import type { DepartAttributes, DepartCreationAttributes } from "./Depart";
-import { DimConsignee } from "./DimConsignee";
+import { DimConsignee as _DimConsignee } from "./DimConsignee";
 import type { DimConsigneeAttributes, DimConsigneeCreationAttributes } from "./DimConsignee";
-import { DimAirline } from "./DimAirline";
+import { DimAirline as _DimAirline } from "./DimAirline";
 import type { DimAirlineAttributes, DimAirlineCreationAttributes } from "./DimAirline";
-import { DimDelivery } from "./DimDelivery";
+import { DimDelivery as _DimDelivery } from "./DimDelivery";
 import type { DimDeliveryAttributes, DimDeliveryCreationAttributes } from "./DimDelivery";
-import { DimPickup } from "./DimPickup";
+import { DimPickup as _DimPickup } from "./DimPickup";
 import type { DimPickupAttributes, DimPickupCreationAttributes } from "./DimPickup";
-import { DimPortofDest } from "./DimPortofDest";
+import { DimPortofDest as _DimPortofDest } from "./DimPortofDest";
 import type { DimPortofDestAttributes, DimPortofDestCreationAttributes } from "./DimPortofDest";
-import { DimPortofOrigin } from "./DimPortofOrigin";
+import { DimPortofOrigin as _DimPortofOrigin } from "./DimPortofOrigin";
 import type { DimPortofOriginAttributes, DimPortofOriginCreationAttributes } from "./DimPortofOrigin";
-import { DimShipper } from "./DimShipper";
+import { DimShipper as _DimShipper } from "./DimShipper";
 import type { DimShipperAttributes, DimShipperCreationAttributes } from "./DimShipper";
-import { DimTime } from "./DimTime";
+import { DimTime as _DimTime } from "./DimTime";
 import type { DimTimeAttributes, DimTimeCreationAttributes } from "./DimTime";
-import { Dispatch } from "./Dispatch";
+import { Dispatch as _Dispatch } from "./Dispatch";
 import type { DispatchAttributes, DispatchCreationAttributes } from "./Dispatch";
-import { Etadelivered } from "./Etadelivered";
+import { Etadelivered as _Etadelivered } from "./Etadelivered";
 import type { EtadeliveredAttributes, EtadeliveredCreationAttributes } from "./Etadelivered";
-import { FactOperationalData } from "./FactOperationalData";
+import { FactOperationalData as _FactOperationalData } from "./FactOperationalData";
 import type { FactOperationalDataAttributes, FactOperationalDataCreationAttributes } from "./FactOperationalData";
-import { ImMessages } from "./ImMessages";
+import { HawbList as _HawbList } from "./HawbList";
+import type { HawbListAttributes, HawbListCreationAttributes } from "./HawbList";
+import { ImMessages as _ImMessages } from "./ImMessages";
 import type { ImMessagesAttributes, ImMessagesCreationAttributes } from "./ImMessages";
-import { ImShipmentAnalytics } from "./ImShipmentAnalytics";
+import { ImShipmentAnalytics as _ImShipmentAnalytics } from "./ImShipmentAnalytics";
 import type { ImShipmentAnalyticsAttributes, ImShipmentAnalyticsCreationAttributes } from "./ImShipmentAnalytics";
-import { ImShipmentAnalyticsCost } from "./ImShipmentAnalyticsCost";
+import { ImShipmentAnalyticsCost as _ImShipmentAnalyticsCost } from "./ImShipmentAnalyticsCost";
 import type { ImShipmentAnalyticsCostAttributes, ImShipmentAnalyticsCostCreationAttributes } from "./ImShipmentAnalyticsCost";
-import { LatestId } from "./LatestId";
+import { LatestId as _LatestId } from "./LatestId";
 import type { LatestIdAttributes, LatestIdCreationAttributes } from "./LatestId";
-import { LatestImshipmentId } from "./LatestImshipmentId";
+import { LatestImshipmentId as _LatestImshipmentId } from "./LatestImshipmentId";
 import type { LatestImshipmentIdAttributes, LatestImshipmentIdCreationAttributes } from "./LatestImshipmentId";
-import { LatestImshipmentIntransitId } from "./LatestImshipmentIntransitId";
+import { LatestImshipmentIntransitId as _LatestImshipmentIntransitId } from "./LatestImshipmentIntransitId";
 import type { LatestImshipmentIntransitIdAttributes, LatestImshipmentIntransitIdCreationAttributes } from "./LatestImshipmentIntransitId";
-import { OtifrootcausesMaster } from "./OtifrootcausesMaster";
+import { OtifrootcausesMaster as _OtifrootcausesMaster } from "./OtifrootcausesMaster";
 import type { OtifrootcausesMasterAttributes, OtifrootcausesMasterCreationAttributes } from "./OtifrootcausesMaster";
-import { OutFordelivery } from "./OutFordelivery";
+import { OutFordelivery as _OutFordelivery } from "./OutFordelivery";
 import type { OutFordeliveryAttributes, OutFordeliveryCreationAttributes } from "./OutFordelivery";
-import { Pickup } from "./Pickup";
+import { Pickup as _Pickup } from "./Pickup";
 import type { PickupAttributes, PickupCreationAttributes } from "./Pickup";
-import { RegionDetails } from "./RegionDetails";
+import { RegionDetails as _RegionDetails } from "./RegionDetails";
 import type { RegionDetailsAttributes, RegionDetailsCreationAttributes } from "./RegionDetails";
-import { RegionDetailsCost } from "./RegionDetailsCost";
+import { RegionDetailsCost as _RegionDetailsCost } from "./RegionDetailsCost";
 import type { RegionDetailsCostAttributes, RegionDetailsCostCreationAttributes } from "./RegionDetailsCost";
-import { RegionDetailsIntransit } from "./RegionDetailsIntransit";
+import { RegionDetailsIntransit as _RegionDetailsIntransit } from "./RegionDetailsIntransit";
 import type { RegionDetailsIntransitAttributes, RegionDetailsIntransitCreationAttributes } from "./RegionDetailsIntransit";
-import { ShipmentDeviated } from "./ShipmentDeviated";
+import { ShipmentDeviated as _ShipmentDeviated } from "./ShipmentDeviated";
 import type { ShipmentDeviatedAttributes, ShipmentDeviatedCreationAttributes } from "./ShipmentDeviated";
-import { SourceOperationalData } from "./SourceOperationalData";
+import { SourceOperationalData as _SourceOperationalData } from "./SourceOperationalData";
 import type { SourceOperationalDataAttributes, SourceOperationalDataCreationAttributes } from "./SourceOperationalData";
-import { VFlightDetails } from "./VFlightDetails";
-import type { VFlightDetailsAttributes, VFlightDetailsCreationAttributes } from "./VFlightDetails";
 
 export {
-  AppUsers,
-  BvAggCostanalysis,
-  BvEtaDeviationDrilldown,
-  BvNewshipmentetadeviation,
-  BvNewshipmentetadeviationBk180222,
-  BvNewshipmentetadeviationDelivered,
-  BvNewshipmentetadeviationIntransit,
-  BvRebookingCancellations,
-  BvShipmentEtaDeviation,
-  BvShipmentEtaDeviationNodate,
-  BvYtdshipmentsDrilldown,
-  FsuDetails,
-  FsuMain,
-  KpiDocument,
-  RegionMaster,
-  RegionMasterBk1,
-  RegionMasterProdslgBk210222,
-  VShipmentEtacount,
-  AggAirlinePerformance,
-  AggCostanalysisShipments,
-  AggCostgrpshipments,
-  AggGrossNetotPerformance,
-  AggGskvxscorecard,
-  AggIrregularityremarks,
-  AggLaneoverview,
-  AggOtifrootcauses,
-  AggQtyoverview,
-  AggRebookingsCancellations,
-  AggYtdshipmentsWeight,
-  AggYtdspendWeight,
-  BatchtimeUpdate,
-  CustomImport,
-  Delivered,
-  Depart,
-  DimConsignee,
-  DimAirline,
-  DimDelivery,
-  DimPickup,
-  DimPortofDest,
-  DimPortofOrigin,
-  DimShipper,
-  DimTime,
-  Dispatch,
-  Etadelivered,
-  FactOperationalData,
-  ImMessages,
-  ImShipmentAnalytics,
-  ImShipmentAnalyticsCost,
-  LatestId,
-  LatestImshipmentId,
-  LatestImshipmentIntransitId,
-  OtifrootcausesMaster,
-  OutFordelivery,
-  Pickup,
-  RegionDetails,
-  RegionDetailsCost,
-  RegionDetailsIntransit,
-  ShipmentDeviated,
-  SourceOperationalData,
-  VFlightDetails,
+  _AppUsers as AppUsers,
+  _BvAggCostanalysis as BvAggCostanalysis,
+  _BvEtaDeviationDrilldown as BvEtaDeviationDrilldown,
+  _BvNewshipmentetadeviation as BvNewshipmentetadeviation,
+  _BvNewshipmentetadeviationDelivered as BvNewshipmentetadeviationDelivered,
+  _BvNewshipmentetadeviationIntransit as BvNewshipmentetadeviationIntransit,
+  _BvRebookingCancellations as BvRebookingCancellations,
+  _BvShipmentEtaDeviation as BvShipmentEtaDeviation,
+  _BvShipmentEtaDeviationNodate as BvShipmentEtaDeviationNodate,
+  _BvYtdshipmentsDrilldown as BvYtdshipmentsDrilldown,
+  _KpiDocument as KpiDocument,
+  _RegionMaster as RegionMaster,
+  _VShipmentEtacount as VShipmentEtacount,
+  _AggAirlinePerformance as AggAirlinePerformance,
+  _AggCostanalysisShipments as AggCostanalysisShipments,
+  _AggCostgrpshipments as AggCostgrpshipments,
+  _AggGrossNetotPerformance as AggGrossNetotPerformance,
+  _AggGskvxscorecard as AggGskvxscorecard,
+  _AggIrregularityremarks as AggIrregularityremarks,
+  _AggLaneoverview as AggLaneoverview,
+  _AggOtifrootcauses as AggOtifrootcauses,
+  _AggQtyoverview as AggQtyoverview,
+  _AggRebookingsCancellations as AggRebookingsCancellations,
+  _AggYtdshipmentsWeight as AggYtdshipmentsWeight,
+  _AggYtdspendWeight as AggYtdspendWeight,
+  _BatchtimeUpdate as BatchtimeUpdate,
+  _CustomImport as CustomImport,
+  _Delivered as Delivered,
+  _Depart as Depart,
+  _DimConsignee as DimConsignee,
+  _DimAirline as DimAirline,
+  _DimDelivery as DimDelivery,
+  _DimPickup as DimPickup,
+  _DimPortofDest as DimPortofDest,
+  _DimPortofOrigin as DimPortofOrigin,
+  _DimShipper as DimShipper,
+  _DimTime as DimTime,
+  _Dispatch as Dispatch,
+  _Etadelivered as Etadelivered,
+  _FactOperationalData as FactOperationalData,
+  _HawbList as HawbList,
+  _ImMessages as ImMessages,
+  _ImShipmentAnalytics as ImShipmentAnalytics,
+  _ImShipmentAnalyticsCost as ImShipmentAnalyticsCost,
+  _LatestId as LatestId,
+  _LatestImshipmentId as LatestImshipmentId,
+  _LatestImshipmentIntransitId as LatestImshipmentIntransitId,
+  _OtifrootcausesMaster as OtifrootcausesMaster,
+  _OutFordelivery as OutFordelivery,
+  _Pickup as Pickup,
+  _RegionDetails as RegionDetails,
+  _RegionDetailsCost as RegionDetailsCost,
+  _RegionDetailsIntransit as RegionDetailsIntransit,
+  _ShipmentDeviated as ShipmentDeviated,
+  _SourceOperationalData as SourceOperationalData,
 };
 
 export type {
@@ -192,8 +177,6 @@ export type {
   BvEtaDeviationDrilldownCreationAttributes,
   BvNewshipmentetadeviationAttributes,
   BvNewshipmentetadeviationCreationAttributes,
-  BvNewshipmentetadeviationBk180222Attributes,
-  BvNewshipmentetadeviationBk180222CreationAttributes,
   BvNewshipmentetadeviationDeliveredAttributes,
   BvNewshipmentetadeviationDeliveredCreationAttributes,
   BvNewshipmentetadeviationIntransitAttributes,
@@ -206,18 +189,10 @@ export type {
   BvShipmentEtaDeviationNodateCreationAttributes,
   BvYtdshipmentsDrilldownAttributes,
   BvYtdshipmentsDrilldownCreationAttributes,
-  FsuDetailsAttributes,
-  FsuDetailsCreationAttributes,
-  FsuMainAttributes,
-  FsuMainCreationAttributes,
   KpiDocumentAttributes,
   KpiDocumentCreationAttributes,
   RegionMasterAttributes,
   RegionMasterCreationAttributes,
-  RegionMasterBk1Attributes,
-  RegionMasterBk1CreationAttributes,
-  RegionMasterProdslgBk210222Attributes,
-  RegionMasterProdslgBk210222CreationAttributes,
   VShipmentEtacountAttributes,
   VShipmentEtacountCreationAttributes,
   AggAirlinePerformanceAttributes,
@@ -274,6 +249,8 @@ export type {
   EtadeliveredCreationAttributes,
   FactOperationalDataAttributes,
   FactOperationalDataCreationAttributes,
+  HawbListAttributes,
+  HawbListCreationAttributes,
   ImMessagesAttributes,
   ImMessagesCreationAttributes,
   ImShipmentAnalyticsAttributes,
@@ -302,71 +279,64 @@ export type {
   ShipmentDeviatedCreationAttributes,
   SourceOperationalDataAttributes,
   SourceOperationalDataCreationAttributes,
-  VFlightDetailsAttributes,
-  VFlightDetailsCreationAttributes,
 };
 
 export function initModels(sequelize: Sequelize) {
-  AppUsers.initModel(sequelize);
-  BvAggCostanalysis.initModel(sequelize);
-  BvEtaDeviationDrilldown.initModel(sequelize);
-  BvNewshipmentetadeviation.initModel(sequelize);
-  BvNewshipmentetadeviationBk180222.initModel(sequelize);
-  BvNewshipmentetadeviationDelivered.initModel(sequelize);
-  BvNewshipmentetadeviationIntransit.initModel(sequelize);
-  BvRebookingCancellations.initModel(sequelize);
-  BvShipmentEtaDeviation.initModel(sequelize);
-  BvShipmentEtaDeviationNodate.initModel(sequelize);
-  BvYtdshipmentsDrilldown.initModel(sequelize);
-  FsuDetails.initModel(sequelize);
-  FsuMain.initModel(sequelize);
-  KpiDocument.initModel(sequelize);
-  RegionMaster.initModel(sequelize);
-  RegionMasterBk1.initModel(sequelize);
-  RegionMasterProdslgBk210222.initModel(sequelize);
-  VShipmentEtacount.initModel(sequelize);
-  AggAirlinePerformance.initModel(sequelize);
-  AggCostanalysisShipments.initModel(sequelize);
-  AggCostgrpshipments.initModel(sequelize);
-  AggGrossNetotPerformance.initModel(sequelize);
-  AggGskvxscorecard.initModel(sequelize);
-  AggIrregularityremarks.initModel(sequelize);
-  AggLaneoverview.initModel(sequelize);
-  AggOtifrootcauses.initModel(sequelize);
-  AggQtyoverview.initModel(sequelize);
-  AggRebookingsCancellations.initModel(sequelize);
-  AggYtdshipmentsWeight.initModel(sequelize);
-  AggYtdspendWeight.initModel(sequelize);
-  BatchtimeUpdate.initModel(sequelize);
-  CustomImport.initModel(sequelize);
-  Delivered.initModel(sequelize);
-  Depart.initModel(sequelize);
-  DimConsignee.initModel(sequelize);
-  DimAirline.initModel(sequelize);
-  DimDelivery.initModel(sequelize);
-  DimPickup.initModel(sequelize);
-  DimPortofDest.initModel(sequelize);
-  DimPortofOrigin.initModel(sequelize);
-  DimShipper.initModel(sequelize);
-  DimTime.initModel(sequelize);
-  Dispatch.initModel(sequelize);
-  Etadelivered.initModel(sequelize);
-  FactOperationalData.initModel(sequelize);
-  ImMessages.initModel(sequelize);
-  ImShipmentAnalytics.initModel(sequelize);
-  ImShipmentAnalyticsCost.initModel(sequelize);
-  LatestId.initModel(sequelize);
-  LatestImshipmentId.initModel(sequelize);
-  LatestImshipmentIntransitId.initModel(sequelize);
-  OtifrootcausesMaster.initModel(sequelize);
-  OutFordelivery.initModel(sequelize);
-  Pickup.initModel(sequelize);
-  RegionDetails.initModel(sequelize);
-  RegionDetailsCost.initModel(sequelize);
-  RegionDetailsIntransit.initModel(sequelize);
-  ShipmentDeviated.initModel(sequelize);
-  SourceOperationalData.initModel(sequelize);
-  VFlightDetails.initModel(sequelize);
+  const AppUsers = _AppUsers.initModel(sequelize);
+  const BvAggCostanalysis = _BvAggCostanalysis.initModel(sequelize);
+  const BvEtaDeviationDrilldown = _BvEtaDeviationDrilldown.initModel(sequelize);
+  const BvNewshipmentetadeviation = _BvNewshipmentetadeviation.initModel(sequelize);
+  const BvNewshipmentetadeviationDelivered = _BvNewshipmentetadeviationDelivered.initModel(sequelize);
+  const BvNewshipmentetadeviationIntransit = _BvNewshipmentetadeviationIntransit.initModel(sequelize);
+  const BvRebookingCancellations = _BvRebookingCancellations.initModel(sequelize);
+  const BvShipmentEtaDeviation = _BvShipmentEtaDeviation.initModel(sequelize);
+  const BvShipmentEtaDeviationNodate = _BvShipmentEtaDeviationNodate.initModel(sequelize);
+  const BvYtdshipmentsDrilldown = _BvYtdshipmentsDrilldown.initModel(sequelize);
+  const KpiDocument = _KpiDocument.initModel(sequelize);
+  const RegionMaster = _RegionMaster.initModel(sequelize);
+  const VShipmentEtacount = _VShipmentEtacount.initModel(sequelize);
+  const AggAirlinePerformance = _AggAirlinePerformance.initModel(sequelize);
+  const AggCostanalysisShipments = _AggCostanalysisShipments.initModel(sequelize);
+  const AggCostgrpshipments = _AggCostgrpshipments.initModel(sequelize);
+  const AggGrossNetotPerformance = _AggGrossNetotPerformance.initModel(sequelize);
+  const AggGskvxscorecard = _AggGskvxscorecard.initModel(sequelize);
+  const AggIrregularityremarks = _AggIrregularityremarks.initModel(sequelize);
+  const AggLaneoverview = _AggLaneoverview.initModel(sequelize);
+  const AggOtifrootcauses = _AggOtifrootcauses.initModel(sequelize);
+  const AggQtyoverview = _AggQtyoverview.initModel(sequelize);
+  const AggRebookingsCancellations = _AggRebookingsCancellations.initModel(sequelize);
+  const AggYtdshipmentsWeight = _AggYtdshipmentsWeight.initModel(sequelize);
+  const AggYtdspendWeight = _AggYtdspendWeight.initModel(sequelize);
+  const BatchtimeUpdate = _BatchtimeUpdate.initModel(sequelize);
+  const CustomImport = _CustomImport.initModel(sequelize);
+  const Delivered = _Delivered.initModel(sequelize);
+  const Depart = _Depart.initModel(sequelize);
+  const DimConsignee = _DimConsignee.initModel(sequelize);
+  const DimAirline = _DimAirline.initModel(sequelize);
+  const DimDelivery = _DimDelivery.initModel(sequelize);
+  const DimPickup = _DimPickup.initModel(sequelize);
+  const DimPortofDest = _DimPortofDest.initModel(sequelize);
+  const DimPortofOrigin = _DimPortofOrigin.initModel(sequelize);
+  const DimShipper = _DimShipper.initModel(sequelize);
+  const DimTime = _DimTime.initModel(sequelize);
+  const Dispatch = _Dispatch.initModel(sequelize);
+  const Etadelivered = _Etadelivered.initModel(sequelize);
+  const FactOperationalData = _FactOperationalData.initModel(sequelize);
+  const HawbList = _HawbList.initModel(sequelize);
+  const ImMessages = _ImMessages.initModel(sequelize);
+  const ImShipmentAnalytics = _ImShipmentAnalytics.initModel(sequelize);
+  const ImShipmentAnalyticsCost = _ImShipmentAnalyticsCost.initModel(sequelize);
+  const LatestId = _LatestId.initModel(sequelize);
+  const LatestImshipmentId = _LatestImshipmentId.initModel(sequelize);
+  const LatestImshipmentIntransitId = _LatestImshipmentIntransitId.initModel(sequelize);
+  const OtifrootcausesMaster = _OtifrootcausesMaster.initModel(sequelize);
+  const OutFordelivery = _OutFordelivery.initModel(sequelize);
+  const Pickup = _Pickup.initModel(sequelize);
+  const RegionDetails = _RegionDetails.initModel(sequelize);
+  const RegionDetailsCost = _RegionDetailsCost.initModel(sequelize);
+  const RegionDetailsIntransit = _RegionDetailsIntransit.initModel(sequelize);
+  const ShipmentDeviated = _ShipmentDeviated.initModel(sequelize);
+  const SourceOperationalData = _SourceOperationalData.initModel(sequelize);
 
   FactOperationalData.belongsTo(DimConsignee, { as: "consignee", foreignKey: "consignee_id"});
   DimConsignee.hasMany(FactOperationalData, { as: "fact_operationalData", foreignKey: "consignee_id"});
@@ -390,19 +360,14 @@ export function initModels(sequelize: Sequelize) {
     BvAggCostanalysis: BvAggCostanalysis,
     BvEtaDeviationDrilldown: BvEtaDeviationDrilldown,
     BvNewshipmentetadeviation: BvNewshipmentetadeviation,
-    BvNewshipmentetadeviationBk180222: BvNewshipmentetadeviationBk180222,
     BvNewshipmentetadeviationDelivered: BvNewshipmentetadeviationDelivered,
     BvNewshipmentetadeviationIntransit: BvNewshipmentetadeviationIntransit,
     BvRebookingCancellations: BvRebookingCancellations,
     BvShipmentEtaDeviation: BvShipmentEtaDeviation,
     BvShipmentEtaDeviationNodate: BvShipmentEtaDeviationNodate,
     BvYtdshipmentsDrilldown: BvYtdshipmentsDrilldown,
-    FsuDetails: FsuDetails,
-    FsuMain: FsuMain,
     KpiDocument: KpiDocument,
     RegionMaster: RegionMaster,
-    RegionMasterBk1: RegionMasterBk1,
-    RegionMasterProdslgBk210222: RegionMasterProdslgBk210222,
     VShipmentEtacount: VShipmentEtacount,
     AggAirlinePerformance: AggAirlinePerformance,
     AggCostanalysisShipments: AggCostanalysisShipments,
@@ -431,6 +396,7 @@ export function initModels(sequelize: Sequelize) {
     Dispatch: Dispatch,
     Etadelivered: Etadelivered,
     FactOperationalData: FactOperationalData,
+    HawbList: HawbList,
     ImMessages: ImMessages,
     ImShipmentAnalytics: ImShipmentAnalytics,
     ImShipmentAnalyticsCost: ImShipmentAnalyticsCost,
@@ -445,6 +411,5 @@ export function initModels(sequelize: Sequelize) {
     RegionDetailsIntransit: RegionDetailsIntransit,
     ShipmentDeviated: ShipmentDeviated,
     SourceOperationalData: SourceOperationalData,
-    VFlightDetails: VFlightDetails,
   };
 }

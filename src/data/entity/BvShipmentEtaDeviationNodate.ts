@@ -37,7 +37,7 @@ export class BvShipmentEtaDeviationNodate extends Model<BvShipmentEtaDeviationNo
 
 
   static initModel(sequelize: Sequelize.Sequelize): typeof BvShipmentEtaDeviationNodate {
-    BvShipmentEtaDeviationNodate.init({
+    return BvShipmentEtaDeviationNodate.init({
     origin_code: {
       type: DataTypes.STRING(100),
       allowNull: true
@@ -95,6 +95,5 @@ export class BvShipmentEtaDeviationNodate extends Model<BvShipmentEtaDeviationNo
     tableName: 'BV_shipment_eta_deviation_nodate',
     timestamps: false
   });
-  return BvShipmentEtaDeviationNodate;
   }
 }

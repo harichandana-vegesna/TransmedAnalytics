@@ -405,7 +405,7 @@ export class BvAggCostanalysis extends Model<BvAggCostanalysisAttributes, BvAggC
 
 
   static initModel(sequelize: Sequelize.Sequelize): typeof BvAggCostanalysis {
-    BvAggCostanalysis.init({
+    return BvAggCostanalysis.init({
     pickupAddress2: {
       type: DataTypes.STRING(100),
       allowNull: true
@@ -1198,6 +1198,5 @@ export class BvAggCostanalysis extends Model<BvAggCostanalysisAttributes, BvAggC
     tableName: 'BV_agg_costanalysis',
     timestamps: true
   });
-  return BvAggCostanalysis;
   }
 }

@@ -5,16 +5,19 @@ import { IMShipmentAnalyticsRepository } from "../data/repository/IMShipmentAnal
 import { QueryBuilder } from "../util/QueryBuilder";
 import { FetchResponse } from "../response/APIResponses";
 import { ResponseCode, ResponseStatus } from "../response/BaseResponse";
+import { HawbListRepository } from "../data/repository/HawbListRepository"
 
 export class OperationalDataService {
     private logger: Logger;
     private operationalDataRepository: OperationalDataRepository;
     private iMShipmentAnalyticsRepository:IMShipmentAnalyticsRepository
+    private HawbListRepository:HawbListRepository
     private queryBuilder: QueryBuilder;
     constructor() {
         this.logger = DI.get(Logger);
         this.operationalDataRepository = DI.get(OperationalDataRepository);
         this.iMShipmentAnalyticsRepository = DI.get(IMShipmentAnalyticsRepository)
+        this.HawbListRepository = DI.get(HawbListRepository)
         this.queryBuilder = DI.get(QueryBuilder);
     }
 
@@ -28,12 +31,14 @@ export class OperationalDataService {
                
                 whereObj['hawb'] = req;
                 let operationalData: any = await this.operationalDataRepository.get(whereObj);
+                this.logger.log("OperationalData if its in KPI Document--->",operationalData)
                 console.log("operationalData.length", operationalData.length)
                 if(operationalData.length > 0 ){
                     statusObj['ship_tracking_num'] = req
                     statusObj['shipment_status'] = process.env.SHIPPER_STATUS
                     whereObj['shipper_org_group'] = process.env.SHIPPER_ORG_GROUP
                     let statusData: any = await this.iMShipmentAnalyticsRepository.getStatus(statusObj);
+                    this.logger.log("StatusData in If block--->",statusData)
                     console.log("statusData.length",statusData.length)
                     if(statusData.length > 0){
                         response = new FetchResponse(new ResponseStatus(ResponseCode.SUCCESS, "Submit"), operationalData)
@@ -50,6 +55,7 @@ export class OperationalDataService {
                     whereObj['shipper_org_group'] = process.env.SHIPPER_ORG_GROUP
                     let operationalData1: any;
                     let statusData: any = await this.iMShipmentAnalyticsRepository.getStatus(statusObj);
+                    this.logger.log("StatusData in Else block---->",statusData)
                     if(statusData.length > 0){
                         response = new FetchResponse(new ResponseStatus(ResponseCode.SUCCESS, "HAWB is there"),operationalData1)
                         return resolve(response)
@@ -57,7 +63,7 @@ export class OperationalDataService {
                     whereObj1['ship_tracking_num'] = req
                     whereObj1['shipper_org_group'] = process.env.SHIPPER_ORG_GROUP
                     let operationalData: any = await this.iMShipmentAnalyticsRepository.getHawb(whereObj1);
-                    //console.log("operationalData if its not in KPI", operationalData)
+                    this.logger.log("OperationalData if its not in KPI", operationalData)
                     if(operationalData.length  > 0 ){
                         operationalData ={ "status": {
                             "code": "SUCCESS",
@@ -98,8 +104,8 @@ export class OperationalDataService {
                         'shipper_name' : req.shipperName,	
                         'gross_ontime' : req.grossOntime,	
                         'infull' : req.infull,
-                        'rebookedby' : req.rebookedby,
-                        'rebooked' : req.rebooked,
+                        'rebookedby_customer' : req.rebookedbyCustomer,
+                        'rebookedby_dgf' : req.rebookedbyDhl,
                         'cancelledby' : req.cancelledby,
                         'cancelled' : req.cancelled,
                         'damage' : req.damage,	
@@ -170,6 +176,37 @@ export class OperationalDataService {
             }
         })
     }
+
+    async getListOfHawbsData(monthNumber?: any, year?: any, sort?: any): Promise<any> {
+        let whereObj: any = {};
+        let listHawbs: any
+        return new Promise(async (resolve, reject) => {
+            try {
+                let sortArrayOfArrays: any = [];
+                //Building a sort Object
+                sortArrayOfArrays = this.queryBuilder.buildSortObj(sort);
+                               
+                if (monthNumber !== '') {
+                    whereObj['month'] = monthNumber
+                }
+                if (year !== '') {
+                    whereObj['year'] = year
+                }
+              
+               console.log("WHEREOBJ--->",whereObj)
+
+                listHawbs= await this.HawbListRepository.getHawb(whereObj,sortArrayOfArrays);
+
+                
+                this.logger.log("listHawbs",listHawbs)
+                
+                return resolve(listHawbs)
+            } catch (e) {
+                reject(e)
+            }
+        })
+    }
+
 }
 
 

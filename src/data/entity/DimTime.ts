@@ -22,7 +22,7 @@ export interface DimTimeAttributes {
 
 export type DimTimePk = "shipmentDate";
 export type DimTimeId = DimTime[DimTimePk];
-export type DimTimeOptionalAttributes = "shipmentDate" | "month_number" | "month" | "year_number" | "quarter" | "year_quarter" | "year_month" | "day" | "weekday" | "weeknumber" | "createdAt" | "updatedAt" | "deletedAt" | "shipper_org_group";
+export type DimTimeOptionalAttributes = "id" | "month_number" | "month" | "year_number" | "quarter" | "year_quarter" | "year_month" | "day" | "weekday" | "weeknumber" | "createdAt" | "updatedAt" | "deletedAt" | "shipper_org_group";
 export type DimTimeCreationAttributes = Optional<DimTimeAttributes, DimTimeOptionalAttributes>;
 
 export class DimTime extends Model<DimTimeAttributes, DimTimeCreationAttributes> implements DimTimeAttributes {
@@ -56,7 +56,7 @@ export class DimTime extends Model<DimTimeAttributes, DimTimeCreationAttributes>
   countFact_operationalData!: Sequelize.HasManyCountAssociationsMixin;
 
   static initModel(sequelize: Sequelize.Sequelize): typeof DimTime {
-    DimTime.init({
+    return DimTime.init({
     id: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
@@ -133,6 +133,5 @@ export class DimTime extends Model<DimTimeAttributes, DimTimeCreationAttributes>
       },
     ]
   });
-  return DimTime;
   }
 }

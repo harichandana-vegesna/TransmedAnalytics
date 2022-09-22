@@ -57,7 +57,7 @@ export class BvYtdshipmentsDrilldown extends Model<BvYtdshipmentsDrilldownAttrib
 
 
   static initModel(sequelize: Sequelize.Sequelize): typeof BvYtdshipmentsDrilldown {
-    BvYtdshipmentsDrilldown.init({
+    return BvYtdshipmentsDrilldown.init({
     Consignee_name: {
       type: DataTypes.TEXT,
       allowNull: true
@@ -158,6 +158,5 @@ export class BvYtdshipmentsDrilldown extends Model<BvYtdshipmentsDrilldownAttrib
     tableName: 'BV_ytdshipments_drilldown',
     timestamps: false
   });
-  return BvYtdshipmentsDrilldown;
   }
 }

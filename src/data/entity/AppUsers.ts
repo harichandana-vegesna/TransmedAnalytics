@@ -27,7 +27,7 @@ export class AppUsers extends Model<AppUsersAttributes, AppUsersCreationAttribut
 
 
   static initModel(sequelize: Sequelize.Sequelize): typeof AppUsers {
-    AppUsers.init({
+    return AppUsers.init({
     id: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
@@ -73,6 +73,5 @@ export class AppUsers extends Model<AppUsersAttributes, AppUsersCreationAttribut
       },
     ]
   });
-  return AppUsers;
   }
 }

@@ -67,7 +67,7 @@ export class ImShipmentAnalyticsCost extends Model<ImShipmentAnalyticsCostAttrib
 
 
   static initModel(sequelize: Sequelize.Sequelize): typeof ImShipmentAnalyticsCost {
-    ImShipmentAnalyticsCost.init({
+    return ImShipmentAnalyticsCost.init({
     id: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
@@ -192,6 +192,5 @@ export class ImShipmentAnalyticsCost extends Model<ImShipmentAnalyticsCostAttrib
       },
     ]
   });
-  return ImShipmentAnalyticsCost;
   }
 }

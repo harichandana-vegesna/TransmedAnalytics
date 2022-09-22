@@ -15,7 +15,7 @@ export class Dispatch extends Model<DispatchAttributes, DispatchCreationAttribut
 
 
   static initModel(sequelize: Sequelize.Sequelize): typeof Dispatch {
-    Dispatch.init({
+    return Dispatch.init({
     parent_id: {
       type: DataTypes.INTEGER,
       allowNull: true
@@ -29,6 +29,5 @@ export class Dispatch extends Model<DispatchAttributes, DispatchCreationAttribut
     tableName: 'dispatch',
     timestamps: false
   });
-  return Dispatch;
   }
 }

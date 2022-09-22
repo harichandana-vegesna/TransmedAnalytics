@@ -15,7 +15,7 @@ export class Delivered extends Model<DeliveredAttributes, DeliveredCreationAttri
 
 
   static initModel(sequelize: Sequelize.Sequelize): typeof Delivered {
-    Delivered.init({
+    return Delivered.init({
     parent_id: {
       type: DataTypes.INTEGER,
       allowNull: true
@@ -29,6 +29,5 @@ export class Delivered extends Model<DeliveredAttributes, DeliveredCreationAttri
     tableName: 'delivered',
     timestamps: false
   });
-  return Delivered;
   }
 }

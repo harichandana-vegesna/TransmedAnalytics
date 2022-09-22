@@ -171,7 +171,7 @@ export class SourceOperationalData extends Model<SourceOperationalDataAttributes
 
 
   static initModel(sequelize: Sequelize.Sequelize): typeof SourceOperationalData {
-    SourceOperationalData.init({
+    return SourceOperationalData.init({
     id: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
@@ -506,6 +506,5 @@ export class SourceOperationalData extends Model<SourceOperationalDataAttributes
       },
     ]
   });
-  return SourceOperationalData;
   }
 }

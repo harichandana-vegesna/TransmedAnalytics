@@ -46,7 +46,7 @@ export class DimPickup extends Model<DimPickupAttributes, DimPickupCreationAttri
   countFact_operationalData!: Sequelize.HasManyCountAssociationsMixin;
 
   static initModel(sequelize: Sequelize.Sequelize): typeof DimPickup {
-    DimPickup.init({
+    return DimPickup.init({
     id: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
@@ -93,6 +93,5 @@ export class DimPickup extends Model<DimPickupAttributes, DimPickupCreationAttri
       },
     ]
   });
-  return DimPickup;
   }
 }

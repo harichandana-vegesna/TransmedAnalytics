@@ -48,7 +48,7 @@ export class DimDelivery extends Model<DimDeliveryAttributes, DimDeliveryCreatio
   countFact_operationalData!: Sequelize.HasManyCountAssociationsMixin;
 
   static initModel(sequelize: Sequelize.Sequelize): typeof DimDelivery {
-    DimDelivery.init({
+    return DimDelivery.init({
     id: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
@@ -99,6 +99,5 @@ export class DimDelivery extends Model<DimDeliveryAttributes, DimDeliveryCreatio
       },
     ]
   });
-  return DimDelivery;
   }
 }

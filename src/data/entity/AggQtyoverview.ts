@@ -41,7 +41,7 @@ export class AggQtyoverview extends Model<AggQtyoverviewAttributes, AggQtyovervi
 
 
   static initModel(sequelize: Sequelize.Sequelize): typeof AggQtyoverview {
-    AggQtyoverview.init({
+    return AggQtyoverview.init({
     id: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
@@ -144,6 +144,5 @@ export class AggQtyoverview extends Model<AggQtyoverviewAttributes, AggQtyovervi
       },
     ]
   });
-  return AggQtyoverview;
   }
 }

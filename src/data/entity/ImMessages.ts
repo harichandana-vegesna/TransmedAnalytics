@@ -33,7 +33,7 @@ export class ImMessages extends Model<ImMessagesAttributes, ImMessagesCreationAt
 
 
   static initModel(sequelize: Sequelize.Sequelize): typeof ImMessages {
-    ImMessages.init({
+    return ImMessages.init({
     id: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
@@ -80,6 +80,5 @@ export class ImMessages extends Model<ImMessagesAttributes, ImMessagesCreationAt
       },
     ]
   });
-  return ImMessages;
   }
 }

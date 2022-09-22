@@ -70,6 +70,22 @@ export class GskVxScorecardRepository extends Repository{
 
     }
 
+    async getListOfOriginByMonth(whereObj: any, sort?:any,limit?:number,offset?:number, attributes?:any ,transaction?: Transaction): Promise<AggGskvxscorecard[]> {
+        whereObj = (whereObj==undefined && whereObj == null)?{}:whereObj
+            return await new Promise((resolve, reject) => {
+                this.logger.log("WHereObj---->",whereObj)
+                AggGskvxscorecard.findAll({ where: whereObj,attributes:[[Sequelize.fn('distinct', Sequelize.col('origin_country')), 'origin_country'],['shipment_origin','origin_name'],['shipment_origin_country','origin_country_name'],'year_number','month']
+                }).then((get: AggGskvxscorecard[]) => {
+                    this.logger.log("get",get)
+                    resolve(get);
+                }).catch((error: any) => {
+                    this.logger.error(error);
+                    reject(error);
+                });
+            })
+
+    }
+
     async getAll(): Promise<AggGskvxscorecard[]> {
             return await new Promise((resolve, reject) => {
                 AggGskvxscorecard.findAll({
