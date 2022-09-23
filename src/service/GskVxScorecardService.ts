@@ -26,7 +26,9 @@ export class GskVxScorecardService {
                 let totalGskRecords: any;
                 //Building a sort Object
                 sortArrayOfArrays = this.queryBuilder.buildSortObj(sort);
-                
+                if (originCountry !== '') {
+                    whereObj['origin_country'] = originCountry
+                }
                 if (shipperAccountNumber !== '') {
                     shipperAccountNumber = shipperAccountNumber.split(",")
                     whereObj['shipperAccountNumber'] = shipperAccountNumber
@@ -38,20 +40,7 @@ export class GskVxScorecardService {
                     whereObj['year_number'] = year
                 }
                 whereObj['shipper_org_group'] = shipperOrgId
-                let scorecardData: any
-                if (originCountry !== '') {
-                    //whereObj['origin_country'] = originCountry
-                    whereObj['shipment_origin'] = originCountry
-                    scorecardData = await this.gskVxScorecardRepository.get(whereObj, sortArrayOfArrays);
-
-                }else{
-                    console.log("else block")
-                    scorecardData = await this.gskVxScorecardRepository.getDetailsByMonth(whereObj);
-                    scorecardData.forEach((element: { origin_country: string; }) => {
-                        element.origin_country = 'All Regions'
-                    });
-                    this.logger.log("scorecardData",scorecardData)
-                }
+                let scorecardData: any = await this.gskVxScorecardRepository.get(whereObj, sortArrayOfArrays);
                 if (scorecardData.length > 0) {
                     totalGskRecords = scorecardData.length;
                     let totalShipments = scorecardData.map((totalShipment: { shipments: any; }) => totalShipment.shipments).reduce((a: any, acc: any) => parseInt(a) + parseInt(acc))
@@ -86,40 +75,6 @@ export class GskVxScorecardService {
                     obj['avgDeviationManagement'] = (avgDeviationManagement / scorecardData.length).toFixed(2)
                 }
                 return resolve({ "result": scorecardData, "totals": obj, "TotalCount": totalGskRecords })
-            } catch (e) {
-                reject(e)
-            }
-        })
-    }
-
-    async getOriginListData(monthNumber?: any, year?: any,shipperAccountNumber?:any): Promise<any> {
-        let whereObj: any = {};
-        let listOriginCountries: any
-        return new Promise(async (resolve, reject) => {
-            try {
-                let sortArrayOfArrays: any = [];
-                //Building a sort Object
-                // sortArrayOfArrays = this.queryBuilder.buildSortObj(sort);
-                               
-                if (monthNumber !== '') {
-                    whereObj['month'] = monthNumber
-                }
-                if (year !== '') {
-                    whereObj['year_number'] = year
-                }
-                if (shipperAccountNumber !== '') {
-                    shipperAccountNumber = shipperAccountNumber.split(",")
-                    whereObj['shipperAccountNumber'] = shipperAccountNumber
-                }
-                
-               
-
-                listOriginCountries = await this.gskVxScorecardRepository.getListOfOriginByMonth(whereObj, sortArrayOfArrays);
-
-                
-                this.logger.log("listOriginCountries",listOriginCountries)
-                
-                return resolve(listOriginCountries)
             } catch (e) {
                 reject(e)
             }

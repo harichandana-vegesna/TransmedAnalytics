@@ -45,8 +45,7 @@ export class OperationalDataController implements Controller {
 
             }
         });
-
-        router.get('/getTransactions/:arg1',  async (req: Request, res: Response, next: NextFunction) => {
+        router.get('/getTransactions/:arg1', async (req: Request, res: Response, next: NextFunction) => {
             try {
 
                 let response: any;
@@ -61,7 +60,7 @@ export class OperationalDataController implements Controller {
             }
         });
 
-        router.post('/enrichTransaction',  async (req: Request, res: Response, next: NextFunction) => {
+        router.post('/enrichTransaction', async (req: Request, res: Response, next: NextFunction) => {
             try {
 
                 let response: any;
@@ -80,7 +79,7 @@ export class OperationalDataController implements Controller {
             }
         });
 
-        router.get('/getOtifRootCauses', this.verifyJwtTokenService.verifyToken, async (req: Request, res: Response, next: NextFunction) => {
+        router.get('/getOtifRootCauses', async (req: Request, res: Response, next: NextFunction) => {
             try {
 
                 let response: any;

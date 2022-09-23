@@ -10,13 +10,13 @@ import { HawbListRepository } from "../data/repository/HawbListRepository"
 export class OperationalDataService {
     private logger: Logger;
     private operationalDataRepository: OperationalDataRepository;
-    private iMShipmentAnalyticsRepository:IMShipmentAnalyticsRepository
+    private iMShipmentAnalyticsRepository:IMShipmentAnalyticsRepository;
     private HawbListRepository:HawbListRepository
     private queryBuilder: QueryBuilder;
     constructor() {
         this.logger = DI.get(Logger);
         this.operationalDataRepository = DI.get(OperationalDataRepository);
-        this.iMShipmentAnalyticsRepository = DI.get(IMShipmentAnalyticsRepository)
+        this.iMShipmentAnalyticsRepository = DI.get(IMShipmentAnalyticsRepository);
         this.HawbListRepository = DI.get(HawbListRepository)
         this.queryBuilder = DI.get(QueryBuilder);
     }
@@ -31,14 +31,12 @@ export class OperationalDataService {
                
                 whereObj['hawb'] = req;
                 let operationalData: any = await this.operationalDataRepository.get(whereObj);
-                this.logger.log("OperationalData if its in KPI Document--->",operationalData)
                 console.log("operationalData.length", operationalData.length)
                 if(operationalData.length > 0 ){
                     statusObj['ship_tracking_num'] = req
                     statusObj['shipment_status'] = process.env.SHIPPER_STATUS
                     whereObj['shipper_org_group'] = process.env.SHIPPER_ORG_GROUP
                     let statusData: any = await this.iMShipmentAnalyticsRepository.getStatus(statusObj);
-                    this.logger.log("StatusData in If block--->",statusData)
                     console.log("statusData.length",statusData.length)
                     if(statusData.length > 0){
                         response = new FetchResponse(new ResponseStatus(ResponseCode.SUCCESS, "Submit"), operationalData)
@@ -55,7 +53,6 @@ export class OperationalDataService {
                     whereObj['shipper_org_group'] = process.env.SHIPPER_ORG_GROUP
                     let operationalData1: any;
                     let statusData: any = await this.iMShipmentAnalyticsRepository.getStatus(statusObj);
-                    this.logger.log("StatusData in Else block---->",statusData)
                     if(statusData.length > 0){
                         response = new FetchResponse(new ResponseStatus(ResponseCode.SUCCESS, "HAWB is there"),operationalData1)
                         return resolve(response)
@@ -63,7 +60,7 @@ export class OperationalDataService {
                     whereObj1['ship_tracking_num'] = req
                     whereObj1['shipper_org_group'] = process.env.SHIPPER_ORG_GROUP
                     let operationalData: any = await this.iMShipmentAnalyticsRepository.getHawb(whereObj1);
-                    this.logger.log("OperationalData if its not in KPI", operationalData)
+                    //console.log("operationalData if its not in KPI", operationalData)
                     if(operationalData.length  > 0 ){
                         operationalData ={ "status": {
                             "code": "SUCCESS",
@@ -205,7 +202,7 @@ export class OperationalDataService {
                 reject(e)
             }
         })
-    }
+    }    
 
 }
 

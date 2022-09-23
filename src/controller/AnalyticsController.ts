@@ -42,7 +42,7 @@ export class AnalyticsController implements Controller {
     getRouter(): Router {
         const router = Router();
 
-        router.get('/kpiData', this.verifyJwtTokenService.verifyToken, async (req: Request, res: Response, next: NextFunction) => {
+        router.get('/kpiData', async (req: Request, res: Response, next: NextFunction) => {
             try {
 
                 let response: any;
@@ -577,37 +577,13 @@ export class AnalyticsController implements Controller {
             }
         });
 
-        router.get('/getOriginCountries', async (req: Request, res: Response, next: NextFunction) => {
+        router.get('/getOriginCountries',this.verifyJwtTokenService.verifyToken, async (req: Request, res: Response, next: NextFunction) => {
             try {
 
                 let response: any;
                 let dataResult: any;
-                let month = req.param('month');
-                let year = req.param('year');
-                let shipperAccountNumber:any;
-                if (month === undefined) {
-                    month = ''
-                } else {
-                    month = req.param('month');
-                }
-                if (year === undefined) {
-                    year = ''
-                } else {
-                    year = req.param('year');
-                }  
-                if (shipperAccountNumber === undefined || shipperAccountNumber === '' || shipperAccountNumber.length === 0) {
-                    shipperAccountNumber = ''
-                }
-                else {
-                    shipperAccountNumber = req.param('accounts');
-                }
-                console.log("Request body---->", req.param('month'),req.param('year'))
-                if (year !== '' || month !== ''){
-                    dataResult = await this.GskVxScorecardService.getOriginListData(month, year, shipperAccountNumber) 
-                }else{
-                    dataResult = await this.imShipmentAnalyticsService.getOriginCountries()
-                }
-                
+
+                dataResult = await this.imShipmentAnalyticsService.getOriginCountries()
                 response = new FetchResponse(new ResponseStatus(ResponseCode.SUCCESS, "Retrieved Successfully"), dataResult)
 
                 res.json(response);
