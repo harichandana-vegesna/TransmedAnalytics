@@ -34,7 +34,7 @@ module.exports = {
         ]
     },
     output: {
-        filename: 'app-az.js',
+        filename: 'app-hologic.js',
         path: path.resolve(__dirname, 'dist'),
         libraryTarget: 'commonjs2'
     },

@@ -2,7 +2,7 @@ const path = require('path');
 const nodeExternals = require('webpack-node-externals');
 
 module.exports = {
-    entry: './src/main.ts',
+    entry: './src/ImAnalyticsConsume.ts',
     mode: 'development',
     target: 'node',
     module: {
@@ -34,7 +34,7 @@ module.exports = {
         ]
     },
     output: {
-        filename: 'app-bms.js',
+        filename: 'ImAnalyticsConsume_Hologic.js',
         path: path.resolve(__dirname, 'dist'),
         libraryTarget: 'commonjs2'
     },
